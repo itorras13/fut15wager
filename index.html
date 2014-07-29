@@ -77,7 +77,7 @@
             //redirect them to profile page
             //window.location.assign("/profile.html") 
             document.getElementById('loginButton').innerHTML =
-                response.name + ' is logged in!';
+                '<a href="/profile.html">' + response.name + '</a>' + ' is logged in!';
         });
     }
     </script>
@@ -92,6 +92,8 @@
                         <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
                         </fb:login-button>
                     </div>
+                </div>
+                <div id="status">
                 </div>
             </div>
         </div>
