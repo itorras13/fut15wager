@@ -76,8 +76,8 @@
             //window.alert('you are already logged in, you will be directed to your homepage');
             //redirect them to profile page
             //window.location.assign("/profile.html") 
-            document.getElementById('status').innerHTML =
-                'Thanks for logging in, ' + response.name + '!';
+            document.getElementById('loginButton').innerHTML =
+                response.name + ' is logged in!';
         });
     }
     </script>
@@ -88,9 +88,9 @@
                     <img class="logo" src="images/fut15.jpg" width="200" alt="53d7cc651c6ecb463cc12bd4_fut15.jpg">
                 </div>
                 <div class="w-col w-col-8 nav-column"><a class="nav-link" href="#">Features</a>
-                    <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
-                    </fb:login-button>
-                    <div id="status">
+                    <div id="loginButton">
+                        <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
+                        </fb:login-button>
                     </div>
                 </div>
             </div>
