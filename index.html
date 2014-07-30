@@ -24,15 +24,16 @@
         // app know the current login status of the person.
         if (response.status === 'connected') {
             // Logged into your app and Facebook.
+            uid = response.authResponse.userID;
             loggedIn();
         } else if (response.status === 'not_authorized') {
             // The person is logged into Facebook, but not your app.
-            document.getElementById('status').innerHTML = 'Please log ' +
+            document.getElementById('status').innerHTML = '  Please log ' +
                 'into this app.';
         } else {
             // The person is not logged into Facebook, so we're not sure if
             // they are logged into this app or not.
-            document.getElementById('status').innerHTML = 'Please log ' +
+            document.getElementById('status').innerHTML = '  Please log ' +
                 'into Facebook.';
         }
     }
@@ -72,7 +73,6 @@
     function loggedIn() {
         console.log('Welcome!  Fetching your information.... ');
         FB.api('/me', function(response) {
-            console.log('Successful login for: ' + response.name);
             //window.alert('you are already logged in, you will be directed to your homepage');
             //redirect them to profile page
             //window.location.assign("/profile.html") 
@@ -87,13 +87,13 @@
                 <div class="w-col w-col-4 w-clearfix">
                     <img class="logo" src="images/fut15.jpg" width="200" alt="53d7cc651c6ecb463cc12bd4_fut15.jpg">
                 </div>
-                <div class="w-col w-col-8 nav-column"><a class="nav-link" href="#">Features</a>
+                <div class="w-col w-col-8 nav-column">
                     <div id="loginButton">
                         <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
                         </fb:login-button>
+                        <span id="status">
+                        </span>
                     </div>
-                </div>
-                <div id="status">
                 </div>
             </div>
         </div>
