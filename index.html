@@ -17,13 +17,18 @@
     <div id="fb-root"></div>
     <script>
     // This is called with the results from from FB.getLoginStatus().
-    function statusChangeCallback(response) {
+    function statusChangeCallback(response, i) {
         console.log('statusChangeCallback');
         console.log(response);
+        console.log(i);
         // The response object is returned with a status field that lets the
         // app know the current login status of the person.
         if (response.status === 'connected') {
             // Logged into your app and Facebook.
+            if (i == 1) {
+                alert('You will be redirected to your profile page');
+                window.location.assign("/myprofile.html");
+            }
             uid = response.authResponse.userID;
             loggedIn();
         } else if (response.status === 'not_authorized') {
@@ -43,7 +48,7 @@
     // code below.
     function checkLoginState() {
         FB.getLoginStatus(function(response) {
-            statusChangeCallback(response);
+            statusChangeCallback(response, 1);
         });
     }
 
@@ -57,7 +62,7 @@
         });
 
         FB.getLoginStatus(function(response) {
-            statusChangeCallback(response);
+            statusChangeCallback(response, 0);
         });
 
     };
@@ -77,7 +82,7 @@
             //redirect them to profile page
             //window.location.assign("/profile.html") 
             document.getElementById('loginButton').innerHTML =
-                '<a href="/profile.html">' + response.name + '</a>' + ' is logged in!';
+                '<a href="/myprofile.html">' + response.name + '</a>' + ' is logged in!';
         });
     }
     </script>
@@ -116,7 +121,6 @@
                 <div class="w-col w-col-6">
                     <h3>Completely run by the players</h3>
                     <p>We cannot regulate if players keep their end of the deal or not. After the game you give them a thumbs up , thumbs down, or bad signal. For this website to work you, the players, have to be honest. Keep your egos aside and have fun.</p>
-                    <div class="fb-like" data-href="https://www.wc2014game.com" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
                     <div class="w-row">
                         <div class="w-col w-col-4 w-col-small-4 w-col-tiny-4">
                             <div class="icon-title">Thumbs Up</div>

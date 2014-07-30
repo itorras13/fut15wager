@@ -46,13 +46,13 @@
     }
 
     window.fbAsyncInit = function() {
-        FB.init({
+        /*FB.init({
             appId: '1500132366870098',
             status: true,
             cookie: true, // enable cookies to allow the server to access the session
             xfbml: true,
             version: 'v2.0'
-        });
+        });*/
         // Now that we've initialized the JavaScript SDK, we call 
         // FB.getLoginStatus().  This function gets the state of the
         // person visiting this page and can return one of three states to
@@ -66,8 +66,6 @@
         // These three cases are handled in the callback function.
 
         FB.getLoginStatus(function(response) {
-            id = response.authResponse.userID;
-            document.getElementById('facePic').innerHTML = '<img class="hero-iphone" src="https://graph.facebook.com/' + id + '/picture?type=large&height=200&width=200">';
             statusChangeCallback(response);
         });
 
@@ -87,16 +85,15 @@
         console.log('Welcome!  Fetching your information.... ');
         FB.api('/me', function(response) {
             console.log('Successful login for: ' + response.name);
+            document.getElementById('userInfo').innerHTML = '<h1><a class="hero-header" target ="_blank" href="' + response.link + '">' + response.name + '<a/></h1>';
+            document.getElementById('facePic').innerHTML = '<img class="hero-iphone" src="https://graph.facebook.com/' + id + '/picture?type=large&height=200&width=200">';
         });
     }
     //If not logged in
     function notLoggedIn() {
-        window.alert('you are not logged in, you will be directed to the homepage');
+        window.alert('You are not logged in, you will be directed to the homepage.');
         //redirect them to home page if not logged in
         window.location.assign("/index.html")
-        document.getElementById('status').innerHTML =
-            'Thanks for logging in, ' + response.name + '!';
-
     }
     </script>
     <header class="navbar">
@@ -109,7 +106,7 @@
                     <br>
                     <br>
                     <a class="nav-link" href="/matches.html">Matches</a>
-                    <a class="nav-link" href="/profile.html">My Profile</a>
+                    <a class="nav-link" href="/myprofile.html">My Profile</a>
                 </div>
             </div>
         </div>
@@ -117,13 +114,15 @@
     <div class="section profile">
         <div class="w-container">
             <div class="w-row">
-                <div class="w-col w-col-6">
+                <div class="w-col w-col-4">
                     <span id="facePic">
-                        <img class="hero-iphone" src="images/messi.png" height="400" alt="53d7d154699522e03d4d7681_messi.png">
+
                     </span>
                 </div>
                 <div class="w-col w-col-6 call-to-action">
-                    <h1 class="hero-header">Challenge other FUT players just for fun or with something on the line.</h1>
+                    <span id="userInfo">
+                        <h1 class="hero-header"></h1>
+                    </span>
                 </div>
             </div>
         </div>
@@ -132,20 +131,18 @@
         <div class="w-container">
             <div class="w-row">
                 <div class="w-col w-col-6">
-                    <h3>Completely run by the players</h3>
-                    <p>We cannot regulate if players keep their end of the deal or not. After the game you give them a thumbs up , thumbs down, or bad signal. For this website to work you, the players, have to be honest. Keep your egos aside and have fun.</p>
-                    <div class="fb-like" data-href="https://www.wc2014game.com" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
+                    <h3>Ratings</h3>
                     <div class="w-row">
                         <div class="w-col w-col-4 w-col-small-4 w-col-tiny-4">
-                            <div class="icon-title">Thumbs Up</div>
+                            <div class="icon-title">3 Thumbs Up</div>
                             <img src="images/thumbs up.jpeg" width="57" alt="53d7d4d8699522e03d4d76b2_thumbs%20up.jpeg">
                         </div>
                         <div class="w-col w-col-4 w-col-small-4 w-col-tiny-4">
-                            <div class="icon-title">Thumbs Down</div>
+                            <div class="icon-title">1 Thumbs Down</div>
                             <img src="images/thumbs down.jpeg" width="67" alt="53d7d4ec8b6016c574b8350c_thumbs%20down.jpeg">
                         </div>
                         <div class="w-col w-col-4 w-col-small-4 w-col-tiny-4">
-                            <div class="icon-title">Bad Signal</div>
+                            <div class="icon-title">1 Bad Signal</div>
                             <img src="images/no signal.png" width="65" alt="53d7d4fd699522e03d4d76b5_no%20signal.png">
                         </div>
                     </div>
