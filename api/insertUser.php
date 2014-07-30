@@ -24,7 +24,7 @@ if (mysql_num_rows($checkUserID) != 0) {
     echo "already";
 }
 else {
-	mysql_query("INSERT INTO users (id, firstName, lastName) VALUES('$id', '$first', '$last')") or die(mysql_error());  
+	mysql_query("INSERT INTO users (id, firstName, lastName, thumbsUp,thumbsDown,badSignal) VALUES('$id', '$first', '$last',0,0,0)") or die(mysql_error());  
 	echo "new";
 }
 

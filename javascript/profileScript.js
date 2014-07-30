@@ -73,9 +73,13 @@
             document.getElementById('facePic').innerHTML = '<img class="hero-iphone" src="https://graph.facebook.com/' + id + '/picture?type=large&height=200&width=200">';
             $(document).ready(function() {
                 $.ajax({
-                    url: "/api/systemAndName.php?q=" + id,
+                    url: "/api/userInfoAPI.php?q=" + id,
+                    dataType: 'json',
                     success: function(result) {
-                        document.getElementById('system').innerHTML = result;
+                        document.getElementById('system').innerHTML = result.message1;
+                        document.getElementById('thumbsUp').innerHTML = result.message2;
+                        document.getElementById('thumbsDown').innerHTML = result.message3;
+                        document.getElementById('badSignal').innerHTML = result.message4;
                     }
                 });
             });
