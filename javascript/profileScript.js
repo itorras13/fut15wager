@@ -72,19 +72,13 @@
             document.getElementById('userInfo').innerHTML = '<h1><a class="hero-header" target ="_blank" href="' + response.link + '">' + response.name + '<a/></h1>';
             document.getElementById('facePic').innerHTML = '<img class="hero-iphone" src="https://graph.facebook.com/' + id + '/picture?type=large&height=200&width=200">';
             $.ajax({
-                url: "/api/systemAndName.php?q="+id,
+                url: "/api/systemAndName.php?q=" + id,
                 success: function(result) {
-                    alert(result);
-                    $(".info").html(result);
+                    alert('hey');
                 }
+                alert(result);
             });
-            /*if (window.XMLHttpRequest) { // code for IE7+, Firefox, Chrome, Opera, Safari
-                xmlhttp = new XMLHttpRequest();
-            } else { // code for IE6, IE5
-                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-            }
-            xmlhttp.open("GET", "/api/systemAndName.php?q="+id, false);
-            xmlhttp.send();*/
+            document.getElementById('info').innerHTML = '<p>' + result + '</p>;
         });
     }
     //If not logged in

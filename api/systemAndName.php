@@ -1,28 +1,25 @@
 <?php
 
 $q = $_GET['q'];
-$con = mysql_connect('localhost','root','root');
+				
+$username = "root";
+$password = "root";
+$hostname = "localhost"; 
 
-if(!$con)
-	{
-		die('Could not connect: ' . mysql_error());
-	}
+//connection to the database
+$dbhandle = mysql_connect($hostname, $username, $password) 
+  or die("Unable to connect to MySQL");
 
-mysql_select_db($con,'fut')or die("cannot select DB");
-					
+$selected = mysql_select_db("fut",$dbhandle) 
+  or die("Could not select examples");
 
-					
-$strSQL= "SELECT * FROM users";
-
-					
-if($rs=mysqli_query($con,$strSQL)){
-	while($row=mysqli_fetch_array($rs)) {
-		echo "<p>" . $rs['firstName'] . " " . $rs['lastName'] . "</p>";
-	}
-}
-else {
-	die(mysqli_error($con));
+//execute the SQL query and return records
+$result = mysql_query("SELECT * FROM users WHERE id=" .$q);
+//fetch tha data from the database
+while ($row = mysql_fetch_array($result)) {
+   echo $row{'firstName'}. " " .$row{'lastName'};
 }
 
-mysqli_close($con);
+
+
 ?>
