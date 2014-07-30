@@ -20,6 +20,6 @@ while ($row = mysql_fetch_array($result)) {
    echo "Sytem: " . $row{'system'} . "<br>Username: " . $row{'username'};
 }
 
-
+mysql_close($dbhandle);
 
 ?>
