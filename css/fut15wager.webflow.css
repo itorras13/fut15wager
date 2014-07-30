@@ -170,7 +170,7 @@ p {
     font-size: 40px;
     text-decoration: none;
     text-transform: uppercase;
-    text-shadow: rgba(0, 0, 0, 0.21) 0px 2px 0px;
+    text-shadow: rgba(0, 0, 0, 0.7) -4px -3px 0px;
 }
 .hero-header:hover {
     border-bottom-color: black;
