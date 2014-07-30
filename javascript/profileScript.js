@@ -71,14 +71,14 @@
             console.log('Successful login for: ' + response.name);
             document.getElementById('userInfo').innerHTML = '<h1><a class="hero-header" target ="_blank" href="' + response.link + '">' + response.name + '<a/></h1>';
             document.getElementById('facePic').innerHTML = '<img class="hero-iphone" src="https://graph.facebook.com/' + id + '/picture?type=large&height=200&width=200">';
-            $.ajax({
-                url: "/api/systemAndName.php?q=" + id,
-                success: function(result) {
-                    alert('hey');
-                }
-                alert(result);
+            $(document).ready(function() {
+                $.ajax({
+                    url: "/api/systemAndName.php?q=" + id,
+                    success: function(result) {
+                        document.getElementById('system').innerHTML = result;
+                    }
+                });
             });
-            document.getElementById('info').innerHTML = '<p>' + result + '</p>;
         });
     }
     //If not logged in

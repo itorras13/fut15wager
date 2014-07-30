@@ -17,7 +17,7 @@ $selected = mysql_select_db("fut",$dbhandle)
 $result = mysql_query("SELECT * FROM users WHERE id=" .$q);
 //fetch tha data from the database
 while ($row = mysql_fetch_array($result)) {
-   echo $row{'firstName'}. " " .$row{'lastName'};
+   echo "Sytem: " . $row{'system'} . "<br>Username: " . $row{'username'};
 }
 
 
