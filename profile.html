@@ -24,7 +24,8 @@
         // for FB.getLoginStatus().
         if (response.status === 'connected') {
             // Logged into your app and Facebook.
-            loggedIn();
+            id = response.authResponse.userID;
+            loggedIn(id);
         } else if (response.status === 'not_authorized') {
             // The person is logged into Facebook, but not your app.
             notLoggedIn();
@@ -65,6 +66,8 @@
         // These three cases are handled in the callback function.
 
         FB.getLoginStatus(function(response) {
+            id = response.authResponse.userID;
+            document.getElementById('facePic').innerHTML = '<img class="hero-iphone" src="https://graph.facebook.com/' + id + '/picture?type=large&height=200&width=200">';
             statusChangeCallback(response);
         });
 
@@ -80,26 +83,100 @@
 
     // Here we run a very simple test of the Graph API after login is
     // successful.  See statusChangeCallback() for when this call is made.
-    function loggedIn() {
+    function loggedIn(id) {
         console.log('Welcome!  Fetching your information.... ');
         FB.api('/me', function(response) {
             console.log('Successful login for: ' + response.name);
-            document.getElementById('status').innerHTML =
-                'Thanks for logging in, ' + response.name + '!';
         });
     }
     //If not logged in
     function notLoggedIn() {
-            window.alert('you are not logged in, you will be directed to the homepage');
-            //redirect them to home page if not logged in
-            window.location.assign("/index.html") 
-            document.getElementById('status').innerHTML =
-                'Thanks for logging in, ' + response.name + '!';
+        window.alert('you are not logged in, you will be directed to the homepage');
+        //redirect them to home page if not logged in
+        window.location.assign("/index.html")
+        document.getElementById('status').innerHTML =
+            'Thanks for logging in, ' + response.name + '!';
 
     }
     </script>
-    hey
+    <header class="navbar">
+        <div class="w-container">
+            <div class="w-row">
+                <div class="w-col w-col-4 w-clearfix">
+                    <img class="logo" src="images/fut15.jpg" width="200" alt="53d7cc651c6ecb463cc12bd4_fut15.jpg">
+                </div>
+                <div class="w-col w-col-8 nav-column">
+                    <br>
+                    <br>
+                    <a class="nav-link" href="/matches.html">Matches</a>
+                    <a class="nav-link" href="/profile.html">My Profile</a>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="section profile">
+        <div class="w-container">
+            <div class="w-row">
+                <div class="w-col w-col-6">
+                    <span id="facePic">
+                        <img class="hero-iphone" src="images/messi.png" height="400" alt="53d7d154699522e03d4d7681_messi.png">
+                    </span>
+                </div>
+                <div class="w-col w-col-6 call-to-action">
+                    <h1 class="hero-header">Challenge other FUT players just for fun or with something on the line.</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="w-clearfix section" id="features">
+        <div class="w-container">
+            <div class="w-row">
+                <div class="w-col w-col-6">
+                    <h3>Completely run by the players</h3>
+                    <p>We cannot regulate if players keep their end of the deal or not. After the game you give them a thumbs up , thumbs down, or bad signal. For this website to work you, the players, have to be honest. Keep your egos aside and have fun.</p>
+                    <div class="fb-like" data-href="https://www.wc2014game.com" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
+                    <div class="w-row">
+                        <div class="w-col w-col-4 w-col-small-4 w-col-tiny-4">
+                            <div class="icon-title">Thumbs Up</div>
+                            <img src="images/thumbs up.jpeg" width="57" alt="53d7d4d8699522e03d4d76b2_thumbs%20up.jpeg">
+                        </div>
+                        <div class="w-col w-col-4 w-col-small-4 w-col-tiny-4">
+                            <div class="icon-title">Thumbs Down</div>
+                            <img src="images/thumbs down.jpeg" width="67" alt="53d7d4ec8b6016c574b8350c_thumbs%20down.jpeg">
+                        </div>
+                        <div class="w-col w-col-4 w-col-small-4 w-col-tiny-4">
+                            <div class="icon-title">Bad Signal</div>
+                            <img src="images/no signal.png" width="65" alt="53d7d4fd699522e03d4d76b5_no%20signal.png">
+                        </div>
+                    </div>
+                </div>
+                <div class="w-col w-col-6 center">
+                    <img src="images/honest.png" width="225" alt="53d7d54f8b6016c574b83511_honest.png">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="section grey footer">
+        <div class="w-container">
+            <p class="footer-text">fut15wager copyright – FIFA 15, FIFA 14 and all FIFA assets property of EA&nbsp;Sports.&nbsp;&nbsp;</p>
+            <div class="button-block">
+                <a class="w-inline-block social-button" href="mailto:itorras13@gmail.com?subject=fut15wager" target="_blank">
+                    <img src="images/email-icon.png" width="21px" alt="52af8da2aed63fb91400000f_email-icon.png">
+                </a>
+                <a class="w-inline-block social-button" href="http://facebook.com/nacho.torras.3" target="_blank">
+                    <img src="images/facebook-icon.png" width="21px" alt="52af8da8aed63fb914000010_facebook-icon.png">
+                </a>
+                <a class="w-inline-block social-button" href="http://twitter.com/nachdacratch" target="_blank">
+                    <img src="images/twitter-icon.png" width="21px" alt="52af8db1aed63fb914000011_twitter-icon.png">
+                </a>
+                <br>
+                <br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                <div class="fb-like" data-href="https://fut15wager.com" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
+            </div>
 
+            <img class="logo-in-footer" src="images/fut15.jpg" width="300" alt="53d7cc651c6ecb463cc12bd4_fut15.jpg">
+        </div>
+    </div>
 </body>
 
 </html>

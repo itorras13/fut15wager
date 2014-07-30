@@ -91,6 +91,10 @@ p {
   background-repeat: no-repeat;
   background-size: cover;
 }
+.section.profile {
+  padding-bottom: 0px;
+  background-color: #A0A0A0 ;
+}
 .section.white.subfooter {
   padding-top: 0px;
   padding-bottom: 0px;
