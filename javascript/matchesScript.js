@@ -66,23 +66,16 @@
     // Here we run a very simple test of the Graph API after login is
     // successful.  See statusChangeCallback() for when this call is made.
     function loggedIn(id) {
-        console.log('Welcome!  Fetching your information.... ');
-        FB.api('/me', function(response) {
-            console.log('Successful login for: ' + response.name);
-            document.getElementById('userInfo').innerHTML = '<h1><a class="hero-header" target ="_blank" href="' + response.link + '">' + response.name + '<a/></h1>';
-            document.getElementById('facePic').innerHTML = '<img class="hero-iphone" src="https://graph.facebook.com/' + id + '/picture?type=large&height=200&width=200">';
-            $(document).ready(function() {
-                $.ajax({
-                    url: "/api/userInfoAPI.php?q=" + id,
-                    dataType: 'json',
-                    success: function(result) {
-                        document.getElementById('system').innerHTML = result.message1;
-                        document.getElementById('thumbsUp').innerHTML = result.message2;
-                        document.getElementById('thumbsDown').innerHTML = result.message3;
-                        document.getElementById('badSignal').innerHTML = result.message4;
-                    }
-                });
-            });
+        $.ajax({
+            url: "/api/matchesAPI.php?q=" + id,
+            //dataType: 'json',
+            success: function(result) {
+            	alert(result);
+                // document.getElementById('system').innerHTML = result.message1;
+                // document.getElementById('thumbsUp').innerHTML = result.message2;
+                // document.getElementById('thumbsDown').innerHTML = result.message3;
+                // document.getElementById('badSignal').innerHTML = result.message4;
+            }
         });
     }
     //If not logged in
