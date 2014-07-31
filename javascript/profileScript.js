@@ -1,7 +1,7 @@
     // This is called with the results from from FB.getLoginStatus().
     var uid;
     var system;
-
+    var offers;
     function statusChangeCallback(response) {
         console.log('statusChangeCallback');
         console.log(response);
@@ -81,6 +81,8 @@
                     dataType: 'json',
                     success: function(result) {
                         system = result.message5;
+                        offers = result.message6;
+                        document.getElementById('offers').innerHTML = "<span id='nOffers'>(" + offers + ")</span> Offers";
                         document.getElementById('system').innerHTML = result.message1;
                         document.getElementById('thumbsUp').innerHTML = result.message2;
                         document.getElementById('thumbsDown').innerHTML = result.message3;

@@ -19,7 +19,6 @@
             notLoggedIn();
         }
     }
-
     
 
     // This function is called when someone finishes with the Login
@@ -77,6 +76,14 @@
                 // document.getElementById('thumbsUp').innerHTML = result.message2;
                 // document.getElementById('thumbsDown').innerHTML = result.message3;
                 // document.getElementById('badSignal').innerHTML = result.message4;
+            }
+        });
+        $.ajax({
+            url: "/api/offersAPI.php?q=" + id,
+            dataType: 'json',
+            success: function(result) {
+                offers = result;
+                document.getElementById('offers').innerHTML = "<span id='nOffers'>(" + offers + ")</span> Offers";
             }
         });
     }

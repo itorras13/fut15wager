@@ -16,6 +16,10 @@ outline: none;
 background: #3f94d0;
 }
 
+.shabu-button.blue:hover{
+	background: #3366CC;
+}
+
 .shabu-button.blue, .shabu-button.gray {
 border: none;
 color: white;
@@ -29,9 +33,29 @@ display: block;
 box-sizing: border-box;
 }
 
+.signup-button.small {
+	padding: 9px;
+font-size: 13px;
+width: 20%;
+height: 10%;
+display: block;
+margin-bottom: 16px;
+}
+
 .signup-button {
-width: 40%;
+width: 50%;
 height: 20%;
 display: block;
 margin-bottom: 16px;
 }
+
+
+#nOffers{
+	color:#3f94d0;
+}
+
+form{
+	font-family: Bitter, serif;
+    color: #c1adcc;
+    font-size: 15px;
+    font-weight: 400;}

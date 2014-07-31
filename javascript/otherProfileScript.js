@@ -10,6 +10,9 @@
         if (response.status === 'connected') {
             // Logged into your app and Facebook.
             id = response.authResponse.userID;
+            if(qParam===""){
+                window.location.assign("/myprofile.html");
+            }
             if(qParam===id){
                 window.location.assign("/myprofile.html");
             }
@@ -54,6 +57,7 @@
         // These three cases are handled in the callback function
         qParam = getParameterByName('id');
 
+
         FB.getLoginStatus(function(response) {
             statusChangeCallback(response);
         });        
@@ -83,6 +87,9 @@
     // successful.  See statusChangeCallback() for when this call is made.
     function loggedIn(id) {
         FB.api('/'+qParam, function(response) {
+            if(response.name===undefined){
+                window.location.assign("/myprofile.html");
+            }
             document.getElementById('userInfo').innerHTML = '<h1><a class="hero-header" target ="_blank" href="' + response.link + '">' + response.name + '<a/></h1>';
             document.getElementById('facePic').innerHTML = '<img class="hero-iphone" src="https://graph.facebook.com/' + qParam + '/picture?type=large&height=200&width=200">';
             $(document).ready(function() {
@@ -97,6 +104,14 @@
                     }
                 });
             });
+        });
+        $.ajax({
+            url: "/api/offersAPI.php?q=" + id,
+            dataType: 'json',
+            success: function(result) {
+                offers = result;
+                document.getElementById('offers').innerHTML = "<span id='nOffers'>(" + offers + ")</span> Offers";
+            }
         });
     }
     //If not logged in

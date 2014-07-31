@@ -189,6 +189,7 @@ p {
 }
 .hero-header:hover {
     border-bottom-color: black;
+    color:  #3366CC;
 }
 .hero-header.index{
     color: white;

@@ -28,6 +28,7 @@
                     <br>
                     <br>
                     <a class="nav-link" href="/allMatches.html">Matches</a>
+                    <a class="nav-link" id="offers" href="/offers.html">Offers</a>
                     <a class="nav-link" href="/myprofile.html">My Profile</a>
                     <a class="nav-link" href="#" onclick="logOut();return false;">Log Out</a>
                 </div>
@@ -54,15 +55,15 @@
     <div class="w-clearfix section" id="features">
         <div class="w-container">
             <div class="w-row">
-                <div class="w-col w-col-6">
+                <div class="w-col w-col-7">
                     <h3>Ratings</h3>
                 </div>
-                <div class="w-col w-col-6 right">
+                <div class="w-col w-col-5 right">
                     <a class="shabu-button signup-button blue" href="#" onclick="showForm();return false;">Create a Match</a>
                 </div>
             </div>
             <div class="w-row">
-                <div class="w-col w-col-6">
+                <div class="w-col w-col-7">
                     <div class="w-col w-col-4 w-col-small-4 w-col-tiny-4">
                         <div id="thumbsUp" class="icon-title">3 Thumbs Up</div>
                         <img src="images/thumbs up.jpeg" width="57" alt="53d7d4d8699522e03d4d76b2_thumbs%20up.jpeg">
@@ -72,22 +73,21 @@
                         <img src="images/thumbs down.jpeg" width="67" alt="53d7d4ec8b6016c574b8350c_thumbs%20down.jpeg">
                     </div>
                     <div class="w-col w-col-4 w-col-small-4 w-col-tiny-4">
-                        <div id="badSignal" class="icon-title">1 Bad Signal</div>
+                        <div id="badSignal" class="icon-title">1 Bad Signal(s)</div>
                         <img src="images/no signal.png" width="65" alt="53d7d4fd699522e03d4d76b5_no%20signal.png">
                     </div>
                 </div>
-                <div class="w-col w-col-6">
+                <div class="w-col w-col-5">
                     <form id="createForm" style="visibility: hidden">
                         <fieldset>
-                            Title:<input type="text" id="title" maxlength="30" required>
+                            Title:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                            <input type="text" id="title" maxlength="30" required>
                             <br><br>
                             <span id="counter"></span><br>Description:
-                            <textarea onkeyup="textCounter(this,\'counter\',100);" maxlength="100" rows="4" cols="30" id="info" form="createForm" required>Enter message here...</textarea>
-                            <!--<input type="hidden" name="system" value="' + system + '">' +
-                            <input type="hidden" name="player1" value=' + uid + '>-->
+                            <textarea onkeyup="textCounter(this,'counter',100);" maxlength="100" rows="4" cols="30" id="info" form="createForm" required>Enter message here...</textarea>
                         </fieldset>
                         <br>
-                        <input type="button" id="submit" value="Submit"/>
+                        <input class="shabu-button signup-button blue small" type="button" id="submit" value="Submit"/>
                     </form>
                 </div>
             </div>

@@ -14,11 +14,11 @@ $selected = mysql_select_db("fut",$dbhandle)
   or die("Could not select examples");
 
 //execute the SQL query and return records
-$result = mysql_query("SELECT * FROM users WHERE id=" .$q);
+$result = mysql_query("SELECT offers FROM users WHERE id=" .$q);
 //fetch tha data from the database
 while ($row = mysql_fetch_array($result)) {
    // echo "Sytem: " . $row{'system'} . "<br>Username: " . $row{'username'};
-   echo json_encode(array("message6" => $row{'offers'}, "message5" => $row{'system'}, "message1" => "Sytem: " . $row{'system'} . "<br>Username: " . $row{'username'}, "message2" => $row{thumbsUp} . " Thumbs Up", "message3" => $row{thumbsDown} . " Thumbs Down", "message4" => $row{badSignal} . " Bad Signal"));
+   echo $row{'offers'};
 }
 
 mysql_close($dbhandle);
