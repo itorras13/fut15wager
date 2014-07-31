@@ -71,6 +71,12 @@
     // successful.  See statusChangeCallback() for when this call is made.
     function loggedIn(id) {
         console.log('Welcome!  Fetching your information.... ');
+        $.ajax({
+            url: "/api/updateOffers.php?q=" + id,
+            success: function(result) {
+                console.log('Offers updated');
+            }
+        });
         FB.api('/me', function(response) {
             console.log('Successful login for: ' + response.name);
             document.getElementById('userInfo').innerHTML = '<h1><a class="hero-header" target ="_blank" href="' + response.link + '">' + response.name + '<a/></h1>';
