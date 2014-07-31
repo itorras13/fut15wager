@@ -97,7 +97,7 @@ p {
 }
 .section.profile {
     padding-bottom: 0px;
-    background-color: rgba(160,160,160,.5);
+    background-color: #f5f6f7;
 }
 .section.white.subfooter {
     padding-top: 0px;
@@ -165,24 +165,7 @@ p {
     color: white;
     border-bottom-color: #f02e4e;
 }
-/*#match-link{
-    display: inline-block;
-    margin-right: 12px;
-    margin-left: 12px;
-    border-bottom: 2px solid transparent;
-    -webkit-transition: border 300ms ease;
-    -o-transition: border 300ms ease;
-    transition: border 300ms ease;
-    text-decoration: none;
-    font-family: Montserrat, sans-serif;
-    color: #745785;
-    font-size: 20px;
-    line-height: 50px;
-    font-weight: 400;
-}
-#match-link:hover{
-    text-decoration: underline;
-}*/
+
 .nav-column {
     text-align: right;
 }
@@ -199,17 +182,23 @@ p {
     -o-transition: border 300ms ease;
     transition: border 300ms ease;
     font-family: Montserrat, sans-serif;
-    color: white;
+    color: #3f94d0;
     font-size: 40px;
     text-decoration: none;
     text-transform: uppercase;
-    text-shadow: rgba(0, 0, 0, 0.7) -4px -3px 0px;
 }
 .hero-header:hover {
     border-bottom-color: black;
 }
+.hero-header.index{
+    color: white;
+    text-shadow: rgba(0, 0, 0, 0.7) -4px -3px 0px;*/
+}
 .hero-iphone{
     margin-bottom: 40px; 
+}
+#system{
+    color: #3f94d0;
 }
 .hero-subtitle {
     margin-bottom: 20px;
