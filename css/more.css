@@ -1,0 +1,37 @@
+.shabu-button {
+-webkit-font-smoothing: antialiased;
+font-family: inherit;
+font-size: inherit;
+font-weight: normal;
+font-size: 18px;
+border-radius: 5px;
+cursor: pointer;
+margin-bottom: 10px;
+padding: 20px;
+text-align: center;
+outline: none;
+}
+
+.shabu-button.blue {
+background: #3f94d0;
+}
+
+.shabu-button.blue, .shabu-button.gray {
+border: none;
+color: white;
+}
+
+a.shabu-button {
+text-decoration: none !important;
+display: block;
+-webkit-box-sizing: border-box;
+-moz-box-sizing: border-box;
+box-sizing: border-box;
+}
+
+.signup-button {
+width: 40%;
+height: 20%;
+display: block;
+margin-bottom: 16px;
+}

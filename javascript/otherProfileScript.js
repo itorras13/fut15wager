@@ -1,4 +1,5 @@
     // This is called with the results from from FB.getLoginStatus().
+    var qParam;
     function statusChangeCallback(response) {
         console.log('statusChangeCallback');
         console.log(response);
@@ -9,6 +10,9 @@
         if (response.status === 'connected') {
             // Logged into your app and Facebook.
             id = response.authResponse.userID;
+            if(qParam===id){
+                window.location.assign("/myprofile.html");
+            }
             loggedIn(id);
         } else if (response.status === 'not_authorized') {
             // The person is logged into Facebook, but not your app.
@@ -48,6 +52,7 @@
         //    your app or not.
         //
         // These three cases are handled in the callback function
+        qParam = getParameterByName('id');
 
         FB.getLoginStatus(function(response) {
             statusChangeCallback(response);
@@ -77,7 +82,6 @@
     // Here we run a very simple test of the Graph API after login is
     // successful.  See statusChangeCallback() for when this call is made.
     function loggedIn(id) {
-        var qParam = getParameterByName('id');
         FB.api('/'+qParam, function(response) {
             document.getElementById('userInfo').innerHTML = '<h1><a class="hero-header" target ="_blank" href="' + response.link + '">' + response.name + '<a/></h1>';
             document.getElementById('facePic').innerHTML = '<img class="hero-iphone" src="https://graph.facebook.com/' + qParam + '/picture?type=large&height=200&width=200">';
@@ -99,7 +103,7 @@
     function notLoggedIn() {
         window.alert('You are not logged in, you will be directed to the homepage.');
         //redirect them to home page if not logged in
-        window.location.assign("/index.html")
+        window.location.assign("/index.html");
     }
 
     function logOut() {

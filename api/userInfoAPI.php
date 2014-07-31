@@ -18,7 +18,7 @@ $result = mysql_query("SELECT * FROM users WHERE id=" .$q);
 //fetch tha data from the database
 while ($row = mysql_fetch_array($result)) {
    // echo "Sytem: " . $row{'system'} . "<br>Username: " . $row{'username'};
-   echo json_encode(array("message1" => "Sytem: " . $row{'system'} . "<br>Username: " . $row{'username'}, "message2" => $row{thumbsUp} . " Thumbs Up", "message3" => $row{thumbsDown} . " Thumbs Down", "message4" => $row{badSignal} . " Bad Signal"));
+   echo json_encode(array("message5" => $row{'system'}, "message1" => "Sytem: " . $row{'system'} . "<br>Username: " . $row{'username'}, "message2" => $row{thumbsUp} . " Thumbs Up", "message3" => $row{thumbsDown} . " Thumbs Down", "message4" => $row{badSignal} . " Bad Signal"));
 }
 
 mysql_close($dbhandle);

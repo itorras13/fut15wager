@@ -1,4 +1,7 @@
     // This is called with the results from from FB.getLoginStatus().
+    var uid;
+    var system;
+
     function statusChangeCallback(response) {
         console.log('statusChangeCallback');
         console.log(response);
@@ -9,6 +12,7 @@
         if (response.status === 'connected') {
             // Logged into your app and Facebook.
             id = response.authResponse.userID;
+            uid = response.authResponse.userID;
             loggedIn(id);
         } else if (response.status === 'not_authorized') {
             // The person is logged into Facebook, but not your app.
@@ -76,6 +80,7 @@
                     url: "/api/userInfoAPI.php?q=" + id,
                     dataType: 'json',
                     success: function(result) {
+                        system = result.message5;
                         document.getElementById('system').innerHTML = result.message1;
                         document.getElementById('thumbsUp').innerHTML = result.message2;
                         document.getElementById('thumbsDown').innerHTML = result.message3;
@@ -90,6 +95,45 @@
         window.alert('You are not logged in, you will be directed to the homepage.');
         //redirect them to home page if not logged in
         window.location.assign("/index.html")
+    }
+
+    //Submits match
+    $(document).ready(function(){
+
+        $("#submit").click(function(){
+            var title = $("#title").val();
+            var info = $("#info").val();
+     
+            if(title ==''|| info==''|| uid==''|| system==''){
+                alert("Insertion Failed Some Fields are Blank....!!");
+            }
+            else{
+                // Returns successful data submission message when the entered information is stored in database.
+                $.post("/api/insertMatch.php",{ title1: title, info1: info, uid1: uid, system1:system},
+                     function(data) {
+                     alert("Your match has been created.");
+                     $('#createForm')[0].reset(); //To reset form fields
+                     document.getElementById("createForm").style.visibility="hidden";
+                });
+     
+            }
+        });
+    });
+
+    function showForm() {
+        document.getElementById("createForm").style.visibility="visible";
+    }
+
+
+
+    function textCounter(field, field2, maxlimit) {
+        var countfield = document.getElementById(field2);
+        if (field.value.length > maxlimit) {
+            field.value = field.value.substring(0, maxlimit);
+            return false;
+        } else {
+            countfield.innerHTML = "  " + maxlimit - field.value.length + " characters left...";
+        }
     }
 
     function logOut() {

@@ -21,11 +21,11 @@ while ($row = mysql_fetch_array($result)) {
 //execute the SQL query and return records
 $result = mysql_query("SELECT dayMade,title,player1 FROM matches WHERE complete=0 AND system='" .$system."' ORDER BY dayMade DESC");
 //fetch tha data from the database
-
+//date_default_timezone_set('Asia/Hong_Kong');
 while ($row = mysql_fetch_array($result)) {
 	//Changes date to just month-day-year
 	$phpdate = strtotime( $row{'dayMade'} );
-	$date = date( 'F j,  g:i a', $phpdate );
+	$date = date( 'F j', $phpdate );
 	$result2 = mysql_query("SELECT firstName,lastName FROM users WHERE id=" .$row{'player1'});
 	$row2 = mysql_fetch_array($result2); 
 	$name = $row2{'firstName'} . " " . $row2{'lastName'};
