@@ -70,7 +70,7 @@
             url: "/api/matchesAPI.php?q=" + id,
             //dataType: 'json',
             success: function(result) {
-            	alert(result);
+            	$("table").append(result);
                 // document.getElementById('system').innerHTML = result.message1;
                 // document.getElementById('thumbsUp').innerHTML = result.message2;
                 // document.getElementById('thumbsDown').innerHTML = result.message3;

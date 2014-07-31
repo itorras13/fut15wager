@@ -150,6 +150,21 @@ p {
 .nav-link:hover {
     border-bottom-color: #f02e4e;
 }
+.td-link{
+    display: inline-block;
+    margin-right: 12px;
+    margin-left: 12px;
+    border-bottom: 2px solid transparent;
+    -webkit-transition: border 300ms ease;
+    -o-transition: border 300ms ease;
+    transition: border 300ms ease;
+    text-decoration: none;
+    color: black;
+}
+.td-link:hover{
+    color: white;
+    border-bottom-color: #f02e4e;
+}
 .nav-column {
     text-align: right;
 }
@@ -314,10 +329,10 @@ text-align: center;
 }
 
 /* Cells in even rows (2,4,6...) are one color */ 
-tr:nth-child(even) td { background: #F1F1F1; }   
+tr:nth-child(odd) td { background: #F1F1F1; }   
 
 /* Cells in odd rows (1,3,5...) are another (excludes header cells)  */ 
-tr:nth-child(odd) td { background: #FEFEFE; }  
+tr:nth-child(even) td { background: #FEFEFE; }  
 
 tr td:hover { background: #666; color: #FFF; } /* Hover cell effect! */
 

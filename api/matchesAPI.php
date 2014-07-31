@@ -19,11 +19,17 @@ while ($row = mysql_fetch_array($result)) {
 }
 
 //execute the SQL query and return records
-$result = mysql_query("SELECT * FROM matches WHERE complete=0 AND system='" .$system."'");
+$result = mysql_query("SELECT dayMade,title,player1 FROM matches WHERE complete=0 AND system='" .$system."' ORDER BY dayMade DESC");
 //fetch tha data from the database
+
 while ($row = mysql_fetch_array($result)) {
-   echo "Sytem: " . $row{'system'} . "<br>Title: " . $row{'title'};
-   //echo json_encode(array("message1" => "Sytem: " . $row{'system'} . "<br>Username: " . $row{'username'}, "message2" => $row{thumbsUp} . " Thumbs Up", "message3" => $row{thumbsDown} . " Thumbs Down", "message4" => $row{badSignal} . " Bad Signal"));
+	//Changes date to just month-day-year
+	$phpdate = strtotime( $row{'dayMade'} );
+	$date = date( 'F j,  g:i a', $phpdate );
+	$result2 = mysql_query("SELECT firstName,lastName FROM users WHERE id=" .$row{'player1'});
+	$row2 = mysql_fetch_array($result2); 
+	$name = $row2{'firstName'} . " " . $row2{'lastName'};
+ 	echo "<tr><td>" . $row{'title'} . "</td><td><a class='td-link' href='otherprofile.html?id=" .$row{'player1'} . "'>" . $name . "</a></td><td>" . $date ."</td></tr>";
 }
 
 mysql_close($dbhandle);
