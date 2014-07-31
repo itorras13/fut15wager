@@ -77,10 +77,8 @@
     // Here we run a very simple test of the Graph API after login is
     // successful.  See statusChangeCallback() for when this call is made.
     function loggedIn(id) {
-        console.log('Welcome!  Fetching your information.... ');
         var qParam = getParameterByName('id');
         FB.api('/'+qParam, function(response) {
-            console.log('Successful login for: ' + response.name);
             document.getElementById('userInfo').innerHTML = '<h1><a class="hero-header" target ="_blank" href="' + response.link + '">' + response.name + '<a/></h1>';
             document.getElementById('facePic').innerHTML = '<img class="hero-iphone" src="https://graph.facebook.com/' + qParam + '/picture?type=large&height=200&width=200">';
             $(document).ready(function() {

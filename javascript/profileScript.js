@@ -1,4 +1,5 @@
     // This is called with the results from from FB.getLoginStatus().
+    var uid;
     function statusChangeCallback(response) {
         console.log('statusChangeCallback');
         console.log(response);
@@ -8,8 +9,8 @@
         // for FB.getLoginStatus().
         if (response.status === 'connected') {
             // Logged into your app and Facebook.
-            id = response.authResponse.userID;
-            loggedIn(id);
+            uid = response.authResponse.userID;
+            loggedIn(uid);
         } else if (response.status === 'not_authorized') {
             // The person is logged into Facebook, but not your app.
             notLoggedIn();
@@ -65,25 +66,9 @@
 
     // Here we run a very simple test of the Graph API after login is
     // successful.  See statusChangeCallback() for when this call is made.
-    function loggedIn(id) {
-        console.log('Welcome!  Fetching your information.... ');
-        FB.api('/me', function(response) {
-            console.log('Successful login for: ' + response.name);
-            document.getElementById('userInfo').innerHTML = '<h1><a class="hero-header" target ="_blank" href="' + response.link + '">' + response.name + '<a/></h1>';
-            document.getElementById('facePic').innerHTML = '<img class="hero-iphone" src="https://graph.facebook.com/' + id + '/picture?type=large&height=200&width=200">';
-            $(document).ready(function() {
-                $.ajax({
-                    url: "/api/userInfoAPI.php?q=" + id,
-                    dataType: 'json',
-                    success: function(result) {
-                        document.getElementById('system').innerHTML = result.message1;
-                        document.getElementById('thumbsUp').innerHTML = result.message2;
-                        document.getElementById('thumbsDown').innerHTML = result.message3;
-                        document.getElementById('badSignal').innerHTML = result.message4;
-                    }
-                });
-            });
-        });
+    function loggedIn(uid) {
+        //console.log('Welcome!  Fetching your information.... ');
+        
     }
     //If not logged in
     function notLoggedIn() {
