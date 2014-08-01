@@ -1,7 +1,4 @@
     // This is called with the results from from FB.getLoginStatus().
-    var uid;
-    var system;
-    var offers;
     function statusChangeCallback(response) {
         console.log('statusChangeCallback');
         console.log(response);
@@ -12,7 +9,6 @@
         if (response.status === 'connected') {
             // Logged into your app and Facebook.
             id = response.authResponse.userID;
-            uid = response.authResponse.userID;
             loggedIn(id);
         } else if (response.status === 'not_authorized') {
             // The person is logged into Facebook, but not your app.
@@ -51,13 +47,14 @@
         // 3. Not logged into Facebook and can't tell if they are logged into
         //    your app or not.
         //
-        // These three cases are handled in the callback function.
+        // These three cases are handled in the callback function
+
 
         FB.getLoginStatus(function(response) {
             statusChangeCallback(response);
-        });
-
+        });        
     };
+
     (function(d, s, id) {
         var js, fjs = d.getElementsByTagName(s)[0];
         if (d.getElementById(id)) return;
@@ -67,81 +64,41 @@
         fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
 
+    
     // Here we run a very simple test of the Graph API after login is
     // successful.  See statusChangeCallback() for when this call is made.
     function loggedIn(id) {
-        console.log('Welcome!  Fetching your information.... ');
         $.ajax({
-            url: "/api/updateOffers.php?q=" + id,
+            url: "/api/actualOffersAPI.php?q=" + id,
+            //dataType: 'json',
             success: function(result) {
-                console.log('Offers updated');
+                $("table").append(result);
+                // document.getElementById('system').innerHTML = result.message1;
+                // document.getElementById('thumbsUp').innerHTML = result.message2;
+                // document.getElementById('thumbsDown').innerHTML = result.message3;
+                // document.getElementById('badSignal').innerHTML = result.message4;
             }
         });
-        FB.api('/me', function(response) {
-            console.log('Successful login for: ' + response.name);
-            document.getElementById('userInfo').innerHTML = '<h1><a class="hero-header" target ="_blank" href="' + response.link + '">' + response.name + '<a/></h1>';
-            document.getElementById('facePic').innerHTML = '<img class="hero-iphone" src="https://graph.facebook.com/' + id + '/picture?type=large&height=200&width=200">';
-            $(document).ready(function() {
-                $.ajax({
-                    url: "/api/userInfoAPI.php?q=" + id,
-                    dataType: 'json',
-                    success: function(result) {
-                        system = result.message5;
-                        offers = result.message6;
-                        document.getElementById('offers').innerHTML = "<span id='nOffers'>(" + offers + ")</span> Offers";
-                        document.getElementById('system').innerHTML = result.message1;
-                        document.getElementById('thumbsUp').innerHTML = result.message2;
-                        document.getElementById('thumbsDown').innerHTML = result.message3;
-                        document.getElementById('badSignal').innerHTML = result.message4;
-                    }
-                });
-            });
+        $.ajax({
+            url: "/api/currentMatchAPI.php?q=" + id,
+            success: function(result) {
+                document.getElementById('currentMatch').innerHTML = result;
+            }
+        });
+        $.ajax({
+            url: "/api/offersAPI.php?q=" + id,
+            dataType: 'json',
+            success: function(result) {
+                offers = result;
+                document.getElementById('offers').innerHTML = "<span id='nOffers'>(" + offers + ")</span> Offers";
+            }
         });
     }
     //If not logged in
     function notLoggedIn() {
         window.alert('You are not logged in, you will be directed to the homepage.');
         //redirect them to home page if not logged in
-        window.location.assign("/index.html")
-    }
-
-    //Submits match
-    $(document).ready(function(){
-
-        $("#submit").click(function(){
-            var title = $("#title").val();
-            var info = $("#info").val();
-     
-            if(title ==''|| info==''|| uid==''|| system==''){
-                alert("Insertion Failed Some Fields are Blank....!!");
-            }
-            else{
-                // Returns successful data submission message when the entered information is stored in database.
-                $.post("/api/insertMatch.php",{ title1: title, info1: info, uid1: uid, system1:system},
-                     function(data) {
-                     alert("Your match has been created.");
-                     $('#createForm')[0].reset(); //To reset form fields
-                     document.getElementById("createForm").style.visibility="hidden";
-                });
-     
-            }
-        });
-    });
-
-    function showForm() {
-        document.getElementById("createForm").style.visibility="visible";
-    }
-
-
-
-    function textCounter(field, field2, maxlimit) {
-        var countfield = document.getElementById(field2);
-        if (field.value.length > maxlimit) {
-            field.value = field.value.substring(0, maxlimit);
-            return false;
-        } else {
-            countfield.innerHTML = "  " + maxlimit - field.value.length + " characters left...";
-        }
+        window.location.assign("/index.html");
     }
 
     function logOut() {

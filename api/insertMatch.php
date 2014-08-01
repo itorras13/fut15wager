@@ -20,7 +20,7 @@ $selected = mysql_select_db("fut",$dbhandle)
 date_default_timezone_set('America/Monterrey');
 $date = date('Y-m-d H:i:s ', time());
 
-mysql_query("INSERT INTO matches (title,info,dayMade,player1,system,complete)
+mysql_query("INSERT INTO matches (title,info,dayMade,player1,system,status)
 VALUES('$title','$info', '$date','$uid','$system',0)") or die(mysql_error());  ;
 
 mysql_close($dbhandle);

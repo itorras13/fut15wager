@@ -41,6 +41,13 @@ height: 10%;
 display: block;
 margin-bottom: 16px;
 }
+.signup-button.td {
+	padding: 20px;
+font-size: 13px;
+width: 50%;
+height: 1%;
+display: block;
+}
 
 .signup-button {
 width: 50%;
@@ -58,4 +65,12 @@ form{
 	font-family: Bitter, serif;
     color: #c1adcc;
     font-size: 15px;
-    font-weight: 400;}
+    font-weight: 400;
+}
+
+#currentMatch{
+	color: #3f94d0;
+	font-family: Bitter, serif;
+	font-size: 15px;
+	font-weight: 400;
+}

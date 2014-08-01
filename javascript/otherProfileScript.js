@@ -127,7 +127,7 @@
             if (ret.authResponse) {
                 //they were authed so do the logout
                 FB.logout(function(response) {
-                    alert('You hav been logged out');
+                    alert('You have been logged out');
                     window.location.assign("/index.html");
                 });
             } else {
