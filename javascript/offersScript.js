@@ -69,6 +69,12 @@
     // successful.  See statusChangeCallback() for when this call is made.
     function loggedIn(id) {
         $.ajax({
+            url: "/api/updateOffers.php?q=" + id,
+            success: function(result) {
+                console.log('Offers updated');
+            }
+        });
+        $.ajax({
             url: "/api/actualOffersAPI.php?q=" + id,
             //dataType: 'json',
             success: function(result) {

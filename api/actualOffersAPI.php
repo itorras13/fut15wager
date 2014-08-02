@@ -23,8 +23,8 @@ while ($row = mysql_fetch_array($result)) {
 	$row2 = mysql_fetch_array($result2); 
 	$name = $row2{'firstName'} . " " . $row2{'lastName'};
  	echo "<tr><td class='normaltd'><a target='_blank' class='td-link' href='otherprofile.html?id=" .$row{'playerFrom'} . "'>" . $name . "</a></td><td class='normaltd'>" . $row{'info'} . "</td><td class='normaltd'>" . $date ."</td>";
- 	echo "<td class='buttontd'><center><input class='shabu-button signup-button blue td' type='button' id='submit' value='Accept'/></center></td>";
- 	echo "<td class='buttontd'><center><input class='shabu-button signup-button blue td' type='button' id='submit' value='Decline'/></center></td></tr>";
+ 	echo "<td class='buttontd'><center><button onclick=\"location.href='/api/acceptOffer.php?q="  .$q. "&q2=" .$row{'playerFrom'} . "&offerId=" .$row{'offerID'} . "&match=" .$row{'matchNumber'}. "'\"class='shabu-button signup-button blue td'>Accept</button></center></td>";
+ 	echo "<td class='buttontd'><center><button onclick=\"location.href='/api/declineOffer.php?q="  .$row{'offerID'}. "'\"class='shabu-button signup-button blue td'>Decline</button></center></td></tr>";
 }
 
 mysql_close($dbhandle);

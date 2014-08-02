@@ -2,7 +2,6 @@
 function statusChangeCallback(response, i) {
     console.log('statusChangeCallback');
     console.log(response);
-    console.log(i);
     // The response object is returned with a status field that lets the
     // app know the current login status of the person.
     if (response.status === 'connected') {
@@ -78,6 +77,6 @@ function loggedIn(uid) {
     console.log('Welcome!  Fetching your information.... ');
     FB.api('/me', function(response) {
         document.getElementById('loginButton').innerHTML =
-            '<a href="/myprofile.html">' + response.name + '</a>' + ' is logged in!';
+            '<br><br><a class="nav-link profile" href="/myprofile.html">' + response.name  + ' is logged in!</a>';
     });
 }

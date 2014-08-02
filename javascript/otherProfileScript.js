@@ -1,5 +1,6 @@
     // This is called with the results from from FB.getLoginStatus().
     var qParam;
+    var uid;
     function statusChangeCallback(response) {
         console.log('statusChangeCallback');
         console.log(response);
@@ -10,6 +11,7 @@
         if (response.status === 'connected') {
             // Logged into your app and Facebook.
             id = response.authResponse.userID;
+            uid = response.authResponse.userID;
             if(qParam===""){
                 window.location.assign("/myprofile.html");
             }
@@ -86,6 +88,12 @@
     // Here we run a very simple test of the Graph API after login is
     // successful.  See statusChangeCallback() for when this call is made.
     function loggedIn(id) {
+        $.ajax({
+            url: "/api/updateOffers.php?q=" + id,
+            success: function(result) {
+                console.log('Offers updated');
+            }
+        });
         FB.api('/'+qParam, function(response) {
             if(response.name===undefined){
                 window.location.assign("/myprofile.html");
@@ -107,10 +115,23 @@
         });
         $.ajax({
             url: "/api/offersAPI.php?q=" + id,
-            dataType: 'json',
+            //dataType: 'json',
             success: function(result) {
                 offers = result;
                 document.getElementById('offers').innerHTML = "<span id='nOffers'>(" + offers + ")</span> Offers";
+            }
+        });
+        $.ajax({
+            url: "/api/currentMatchAPI2.php?q=" + qParam,
+            //dataType: 'json',
+            success: function(result) {
+                document.getElementById('profileMatch').innerHTML = result;
+                if(result==="No current games open."){
+                      
+                }
+                else{
+                    document.getElementById('buttonArea').innerHTML = '<a class="shabu-button signup-button blue" href="#" onclick="showForm();return false;">Make an Offer</a>';
+                }
             }
         });
     }
@@ -119,6 +140,43 @@
         window.alert('You are not logged in, you will be directed to the homepage.');
         //redirect them to home page if not logged in
         window.location.assign("/index.html");
+    }
+
+    //Submits offer
+    $(document).ready(function(){
+
+        $("#submit").click(function(){
+            var message = $("#message").val();
+     
+            if( message==''|| uid==''|| qParam==''){
+                alert("Insertion Failed Some Fields are Blank....!!");
+            }
+            else{
+                // Returns successful data submission message when the entered information is stored in database.
+                $.post("/api/insertOffer.php",{ qParam1: qParam, message1: message, uid1: uid},
+                     function(data) {
+                     alert(data);
+                     $('#createForm')[0].reset(); //To reset form fields
+                     document.getElementById("createForm").style.visibility="hidden";
+                     window.location.assign("/myprofile.html")
+                });
+     
+            }
+        });
+    });
+
+    function showForm() {
+        document.getElementById("createForm").style.visibility="visible";
+    }
+
+    function textCounter(field, field2, maxlimit) {
+        var countfield = document.getElementById(field2);
+        if (field.value.length > maxlimit) {
+            field.value = field.value.substring(0, maxlimit);
+            return false;
+        } else {
+            countfield.innerHTML = "  " + maxlimit - field.value.length + " characters left...";
+        }
     }
 
     function logOut() {

@@ -56,7 +56,6 @@ display: block;
 margin-bottom: 16px;
 }
 
-
 #nOffers{
 	color:#3f94d0;
 }
@@ -74,3 +73,18 @@ form{
 	font-size: 15px;
 	font-weight: 400;
 }
+
+#profileMatch{
+	color: #3366CC;
+	font-family: Bitter, serif;
+	font-size: 19px;
+	font-weight: 400;
+}
+
+#red{
+	color: #3f94d0;
+}
+
+
+
+

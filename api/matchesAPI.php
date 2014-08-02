@@ -19,7 +19,7 @@ while ($row = mysql_fetch_array($result)) {
 }
 
 //execute the SQL query and return records
-$result = mysql_query("SELECT dayMade,title,player1 FROM matches WHERE status=0 AND system='" .$system."' ORDER BY dayMade DESC");
+$result = mysql_query("SELECT dayMade,title,player1,matchID FROM matches WHERE status=0 AND player1!=" .$q. " AND system='" .$system."' ORDER BY dayMade DESC");
 //fetch tha data from the database
 //date_default_timezone_set('Asia/Hong_Kong');
 while ($row = mysql_fetch_array($result)) {
@@ -29,7 +29,9 @@ while ($row = mysql_fetch_array($result)) {
 	$result2 = mysql_query("SELECT firstName,lastName FROM users WHERE id=" .$row{'player1'});
 	$row2 = mysql_fetch_array($result2); 
 	$name = $row2{'firstName'} . " " . $row2{'lastName'};
- 	echo "<tr><td class='normaltd'>" . $row{'title'} . "</td><td class='normaltd'><a target='_blank' class='td-link' href='otherprofile.html?id=" .$row{'player1'} . "'>" . $name . "</a></td><td class='normaltd'>" . $date ."</td></tr>";
+ 	echo "<tr><td class='normaltd'><a class='td-link' href='otherprofile.html?id=" .$row{'player1'} . "'>" . $row{'title'};
+ 	echo "</a></td><td class='normaltd'><a target='_blank' class='td-link' href='otherprofile.html?id=" .$row{'player1'} . "'>";
+ 	echo $name . "</a></td><td class='normaltd'>" . $date ."</td></tr>";
 }
 
 mysql_close($dbhandle);

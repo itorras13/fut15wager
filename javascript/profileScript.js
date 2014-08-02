@@ -2,6 +2,7 @@
     var uid;
     var system;
     var offers;
+
     function statusChangeCallback(response) {
         console.log('statusChangeCallback');
         console.log(response);
@@ -93,6 +94,24 @@
                         document.getElementById('thumbsUp').innerHTML = result.message2;
                         document.getElementById('thumbsDown').innerHTML = result.message3;
                         document.getElementById('badSignal').innerHTML = result.message4;
+                        document.getElementById("editLink").style.visibility = "visible";
+                    }
+                });
+                $.ajax({
+                    url: "/api/checkIfMatch.php?q=" + id,
+                    success: function(result) {
+                        if (result == 'delete') {
+                            document.getElementById('buttonArea').innerHTML = '<a class="shabu-button signup-button blue" href="#" onclick="location.href=\'/api/deleteMatch.php?q=' + uid + '\'"class="shabu-button signup-button blue td">Delete Your Match</a>';
+                        } else {
+                            document.getElementById('buttonArea').innerHTML = '<a class="shabu-button signup-button blue" href="#" onclick="showForm();return false;">Create a Match</a>';
+                        }
+                    }
+                });
+                $.ajax({
+                    url: "/api/currentMatchAPI2.php?q=" + uid,
+                    //dataType: 'json',
+                    success: function(result) {
+                        document.getElementById('profileMatch').innerHTML = result;
                     }
                 });
             });
@@ -105,31 +124,66 @@
         window.location.assign("/index.html")
     }
 
-    //Submits match
-    $(document).ready(function(){
+    function editProfile(){
+        var code = '<form id="createForm"><fieldset>System:<select id="editSystem" name="editSystem" required><option value="Xbox 360">Xbox 360</option>';
+            code += '<option value="Xbox One">Xbox One</option><option value="PS4">PS4</option><option value="PS3">PS3</option>';
+            code += '<option value="PC">PC</option></select><br>Username:<input type="text" id="username" maxlength="20" required>';
+            code +=  '</fieldset><br><input class="shabu-button signup-button blue small" type="button" id="edit" value="Save"/></form>';
+        document.getElementById('system').innerHTML = code;
+        $("#edit").click(function() {
+            var editSystem = $("#editSystem").val();
+            var username = $("#username").val();
 
-        $("#submit").click(function(){
-            var title = $("#title").val();
-            var info = $("#info").val();
-     
-            if(title ==''|| info==''|| uid==''|| system==''){
+            if (editSystem == '' || username == '' || uid == '') {
                 alert("Insertion Failed Some Fields are Blank....!!");
-            }
-            else{
+            } else {
                 // Returns successful data submission message when the entered information is stored in database.
-                $.post("/api/insertMatch.php",{ title1: title, info1: info, uid1: uid, system1:system},
-                     function(data) {
-                     alert("Your match has been created.");
-                     $('#createForm')[0].reset(); //To reset form fields
-                     document.getElementById("createForm").style.visibility="hidden";
-                });
-     
+                $.post("/api/editProfile.php", {
+                        username1: username,
+                        editSystem1: editSystem,
+                        uid1: uid,
+                    },
+                    function(data) {
+                        alert(data);
+                        $('#createForm')[0].reset(); //To reset form fields
+                        window.location.assign("/myprofile.html")
+                    });
+
             }
         });
+    }
+
+    //Submits match
+    $(document).ready(function() {
+
+        $("#submit").click(function() {
+            var title = $("#title").val();
+            var info = $("#info").val();
+
+            if (title == '' || info == '' || uid == '' || system == '') {
+                alert("Insertion Failed Some Fields are Blank....!!");
+            } else {
+                // Returns successful data submission message when the entered information is stored in database.
+                $.post("/api/insertMatch.php", {
+                        title1: title,
+                        info1: info,
+                        uid1: uid,
+                        system1: system
+                    },
+                    function(data) {
+                        alert(data);
+                        $('#createForm')[0].reset(); //To reset form fields
+                        document.getElementById("createForm").style.visibility = "hidden";
+                        window.location.assign("/myprofile.html")
+                    });
+
+            }
+        });
+        
     });
 
     function showForm() {
-        document.getElementById("createForm").style.visibility="visible";
+        document.getElementById("createForm").style.visibility = "visible";
     }
 
 

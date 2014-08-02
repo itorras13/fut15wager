@@ -8,7 +8,7 @@
     <link rel="stylesheet" type="text/css" href="css/normalize.css">
     <link rel="stylesheet" type="text/css" href="css/webflow.css">
     <link rel="stylesheet" type="text/css" href="css/fut15wager.webflow.css">
-    <link rel="stylesheet" type="text/css" href="css/more.css">    
+    <link rel="stylesheet" type="text/css" href="css/more.css">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
     <script src="/javascript/otherProfileScript.js"></script>
 </head>
@@ -20,7 +20,9 @@
         <div class="w-container">
             <div class="w-row">
                 <div class="w-col w-col-4 w-clearfix">
-                   <a href="/index.html"> <img class="logo" src="images/fut15.jpg" width="200" alt="53d7cc651c6ecb463cc12bd4_fut15.jpg"></a>
+                    <a href="/index.html">
+                        <img class="logo" src="images/fut15.jpg" width="200" alt="53d7cc651c6ecb463cc12bd4_fut15.jpg">
+                    </a>
                 </div>
                 <div class="w-col w-col-8 nav-column">
                     <br>
@@ -46,6 +48,10 @@
                     </span>
                     <span id='system'>
                     </span>
+                    <br>
+                    <br>
+                    <span id='profileMatch'>
+                    </span>
                 </div>
             </div>
         </div>
@@ -53,27 +59,45 @@
     <div class="w-clearfix section" id="features">
         <div class="w-container">
             <div class="w-row">
-                <div class="w-col w-col-6">
+                <div class="w-col w-col-7">
                     <h3>Ratings</h3>
-                    <div class="w-row">
-                        <div class="w-col w-col-4 w-col-small-4 w-col-tiny-4">
-                            <div id="thumbsUp" class="icon-title">3 Thumbs Up</div>
-                            <img src="images/thumbs up.jpeg" width="57" alt="53d7d4d8699522e03d4d76b2_thumbs%20up.jpeg">
-                        </div>
-                        <div class="w-col w-col-4 w-col-small-4 w-col-tiny-4">
-                            <div id="thumbsDown" class="icon-title">1 Thumbs Down</div>
-                            <img src="images/thumbs down.jpeg" width="67" alt="53d7d4ec8b6016c574b8350c_thumbs%20down.jpeg">
-                        </div>
-                        <div class="w-col w-col-4 w-col-small-4 w-col-tiny-4">
-                            <div id="badSignal" class="icon-title">1 Bad Signal</div>
-                            <img src="images/no signal.png" width="65" alt="53d7d4fd699522e03d4d76b5_no%20signal.png">
-                        </div>
+                </div>
+                <div id="buttonArea" class="w-col w-col-5 right">
+
+                </div>
+            </div>
+            <div class="w-row">
+                <div class="w-col w-col-7">
+                    <div class="w-col w-col-4 w-col-small-4 w-col-tiny-4">
+                        <div id="thumbsUp" class="icon-title">3 Thumbs Up</div>
+                        <img src="images/thumbs up.jpeg" width="57" alt="53d7d4d8699522e03d4d76b2_thumbs%20up.jpeg">
+                    </div>
+                    <div class="w-col w-col-4 w-col-small-4 w-col-tiny-4">
+                        <div id="thumbsDown" class="icon-title">1 Thumbs Down</div>
+                        <img src="images/thumbs down.jpeg" width="67" alt="53d7d4ec8b6016c574b8350c_thumbs%20down.jpeg">
+                    </div>
+                    <div class="w-col w-col-4 w-col-small-4 w-col-tiny-4">
+                        <div id="badSignal" class="icon-title">1 Bad Signal(s)</div>
+                        <img src="images/no signal.png" width="65" alt="53d7d4fd699522e03d4d76b5_no%20signal.png">
                     </div>
                 </div>
-                <div class="w-col w-col-6 center">
+                <div class="w-col w-col-5">
+                    <form id="createForm" style="visibility: hidden">
+                        <fieldset>
+                            <span id="counter"></span>
+                            <br>Message:
+                            <textarea onkeyup="textCounter(this,'counter',100);" maxlength="100" rows="4" cols="30" id="message" form="createForm" required>Enter message here...</textarea>
+                        </fieldset>
+                        <br>
+                        <input class="shabu-button signup-button blue small" type="button" id="submit" value="Submit" />
+                    </form>
                 </div>
             </div>
         </div>
+        <div class="w-col w-col-6 center">
+        </div>
+    </div>
+    </div>
     </div>
     <div class="section grey footer">
         <div class="w-container">
