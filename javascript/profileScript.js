@@ -114,6 +114,9 @@
                     //dataType: 'json',
                     success: function(result) {
                         document.getElementById('profileMatch').innerHTML = result;
+                        if(result==="Currently in a match."){
+                            document.getElementById('inAMatch').innerHTML = 'Current Match';
+                        }
                     }
                 });
             });

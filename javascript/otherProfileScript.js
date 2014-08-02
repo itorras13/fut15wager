@@ -126,8 +126,11 @@
             //dataType: 'json',
             success: function(result) {
                 document.getElementById('profileMatch').innerHTML = result;
-                if(result==="No current games open." || result==="Currently in a match."){
+                if(result==="No current games open."){
                       
+                }
+                else if(result==="Currently in a match."){
+                    document.getElementById('inAMatch').innerHTML = 'Current Match';
                 }
                 else{
                     document.getElementById('buttonArea').innerHTML = '<a class="shabu-button signup-button blue" href="#" onclick="showForm();return false;">Make an Offer</a>';
