@@ -5,6 +5,7 @@ $q = $_GET['q'];
 $username = "root";
 $password = "root";
 $hostname = "localhost"; 
+$i=0;
 
 //connection to the database
 $dbhandle = mysql_connect($hostname, $username, $password) 
@@ -22,7 +23,17 @@ if (mysql_num_rows($checkUserID) != 0) {
     echo "delete";
 }
 else {
-    echo "create";
+	$checkMatches = mysql_query("SELECT matchID FROM matches WHERE (status=1 OR status=2) AND (player1=" .$q. " OR player2=" .$q. ")");
+	if (mysql_num_rows($checkMatches) != 0) {
+    	$i=1;
+	}
+	if($i==0){
+    	echo "create";
+    } else {
+    	while ($row = mysql_fetch_array($checkMatches)) {
+    		echo $row{'matchID'};
+    	}
+    }
 }
 
 

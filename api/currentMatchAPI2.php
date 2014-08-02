@@ -25,7 +25,15 @@ while ($row = mysql_fetch_array($result)) {
     echo "<span id='red'>Open game:</span> <br>Created:<span id='red'> " .$date. ".</span> <br>Title:<span id='red'> " .$row{'title'}. "</span><br> Info:<span id='red'> " .$row{'info'} ;
 }
 if($i==0){
-	echo "No current games open.";
+	$checkMatches = mysql_query("SELECT matchID FROM matches WHERE (status=1 OR status=2) AND (player1=" .$q. " OR player2=" .$q. ")");
+	if (mysql_num_rows($checkMatches) != 0) {
+    	$i=1;
+	}
+	if($i==0){
+    	echo "No current games open.";
+    } else {
+    	echo "Currently in a match.";
+    }
 }
 
 mysql_close($dbhandle);

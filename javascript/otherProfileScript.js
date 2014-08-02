@@ -126,7 +126,7 @@
             //dataType: 'json',
             success: function(result) {
                 document.getElementById('profileMatch').innerHTML = result;
-                if(result==="No current games open."){
+                if(result==="No current games open." || result==="Currently in a match."){
                       
                 }
                 else{

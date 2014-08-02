@@ -102,8 +102,10 @@
                     success: function(result) {
                         if (result == 'delete') {
                             document.getElementById('buttonArea').innerHTML = '<a class="shabu-button signup-button blue" href="#" onclick="location.href=\'/api/deleteMatch.php?q=' + uid + '\'"class="shabu-button signup-button blue td">Delete Your Match</a>';
-                        } else {
+                        } else if (result =='create') {
                             document.getElementById('buttonArea').innerHTML = '<a class="shabu-button signup-button blue" href="#" onclick="showForm();return false;">Create a Match</a>';
+                        } else {
+                            document.getElementById('buttonArea').innerHTML = '<a class="shabu-button signup-button blue" href="/match.html?id=' + result + '">Go to match</a>';
                         }
                     }
                 });
