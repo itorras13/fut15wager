@@ -71,8 +71,11 @@
             url: "/api/currentMatchAPI2.php?q=" + id,
             //dataType: 'json',
             success: function(result) {
-                if(result==="Currently in a match."){
+                if(result==="No current games open."){
+
+                } else {
                     document.getElementById('inAMatch').innerHTML = 'Current Match';
+                    document.getElementById('inAMatch').href=result; 
                 }
             }
         });
@@ -86,7 +89,7 @@
             url: "/api/matchesAPI.php?q=" + id,
             //dataType: 'json',
             success: function(result) {
-            	$("table").append(result);
+            	$("#table").append(result);
                 // document.getElementById('system').innerHTML = result.message1;
                 // document.getElementById('thumbsUp').innerHTML = result.message2;
                 // document.getElementById('thumbsDown').innerHTML = result.message3;

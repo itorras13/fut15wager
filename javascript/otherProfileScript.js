@@ -137,6 +137,20 @@
                 }
             }
         });
+        $.ajax({
+            url: "/api/currentMatchAPI2.php?q=" + id,
+            //dataType: 'json',
+            success: function(result) {
+                if(result==="No current games open."){
+
+                } else {
+                    document.getElementById('profileMatch').innerHTML = "You are already in a match.";
+                    document.getElementById('buttonArea').innerHTML = "";
+                    document.getElementById('inAMatch').innerHTML = 'Current Match';
+                    document.getElementById('inAMatch').href=result; 
+                }
+            }
+        });
     }
     //If not logged in
     function notLoggedIn() {

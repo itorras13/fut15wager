@@ -72,8 +72,11 @@
             url: "/api/currentMatchAPI2.php?q=" + id,
             //dataType: 'json',
             success: function(result) {
-                if(result==="Currently in a match."){
+                if(result==="No current games open."){
+
+                } else {
                     document.getElementById('inAMatch').innerHTML = 'Current Match';
+                    document.getElementById('inAMatch').href=result; 
                 }
             }
         });

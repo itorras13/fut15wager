@@ -56,12 +56,24 @@ display: block;
 margin-bottom: 16px;
 }
 
+td{
+	font: helvetica,"helvetica neue",arial,sans-serif;
+	color: #3f94d0; 
+}
+
 #nOffers{
 	color:#3f94d0;
+	font: helvetica,"helvetica neue",arial,sans-serif;
+}
+
+.nOffers{
+	color:#3f94d0;
+	font-size: 20px;
+	font: helvetica,"helvetica neue",arial,sans-serif;	
 }
 
 form{
-	font-family: Bitter, serif;
+	font: helvetica,"helvetica neue",arial,sans-serif;;
     color: #c1adcc;
     font-size: 15px;
     font-weight: 400;
@@ -69,14 +81,14 @@ form{
 
 #currentMatch{
 	color: #3f94d0;
-	font-family: Bitter, serif;
+	font-family: helvetica,"helvetica neue",arial,sans-serif;
 	font-size: 15px;
 	font-weight: 400;
 }
 
 #profileMatch{
 	color: #3366CC;
-	font-family: Bitter, serif;
+	font-family: helvetica,"helvetica neue",arial,sans-serif;;
 	font-size: 19px;
 	font-weight: 400;
 }

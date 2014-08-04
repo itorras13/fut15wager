@@ -114,8 +114,12 @@
                     //dataType: 'json',
                     success: function(result) {
                         document.getElementById('profileMatch').innerHTML = result;
-                        if(result==="Currently in a match."){
+                        if(result==="No current games open."){
+
+                        } else {
                             document.getElementById('inAMatch').innerHTML = 'Current Match';
+                            document.getElementById('inAMatch').href=result; 
+                            document.getElementById('profileMatch').innerHTML = 'You are in a match.';
                         }
                     }
                 });

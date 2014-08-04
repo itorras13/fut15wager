@@ -163,7 +163,7 @@ p {
     -o-transition: border 300ms ease;
     transition: border 300ms ease;
     text-decoration: none;
-    color: black;
+    color: #3f94d0;
 }
 .td-link:hover{
     color: white;
@@ -353,7 +353,7 @@ tr:nth-child(odd) td { background: #F1F1F1; }
 /* Cells in odd rows (1,3,5...) are another (excludes header cells)  */ 
 tr:nth-child(even) td { background: #FEFEFE; }  
 
-tr .normaltd:hover { background: #666; color: #FFF; } /* Hover cell effect! */
+tr .normaltd:hover { background: #B0B0B0 ; color: #3f94d0; } /* Hover cell effect! */
 
 @media (max-width: 991px) {
     p {
