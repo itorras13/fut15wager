@@ -6,6 +6,7 @@ $username = "root";
 $password = "root";
 $hostname = "localhost"; 
 
+$i =0;
 //connection to the database
 $dbhandle = mysql_connect($hostname, $username, $password) 
   or die("Unable to connect to MySQL");
@@ -14,17 +15,12 @@ $selected = mysql_select_db("fut",$dbhandle)
   or die("Could not select examples");
 
 //execute the SQL query and return records
-// $result = mysql_query("SELECT open FROM offers WHERE open>0 AND playerTo=" .$q);
-// //fetch tha data from the database
-// $i=0;
-// while ($row = mysql_fetch_array($result)) {
-//    $i++;
-// }
-mysql_query("UPDATE matches SET status=4 WHERE status=0 AND player1=" .$q);
-
+$result = mysql_query("SELECT player1,player2,title,info FROM matches WHERE matchID=" .$q);
+//fetch tha data from the database
+while ($row = mysql_fetch_array($result)) {
+	echo json_encode(array("message4" => $row{'player1'}, "message1" => $row{'player2'}, "message2" => $row{'title'}, "message3" => $row{'info'}));
+}
 
 mysql_close($dbhandle);
-
-header("Location: http://localhost:8888/myprofile.html",TRUE,303);
 
 ?>

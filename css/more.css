@@ -97,6 +97,11 @@ form{
 	color: #3f94d0;
 }
 
-
+.vertical-line {
+	margin-top: 15px;
+    border-right: thick solid #3f94d0;
+    margin-bottom: 15px;
+    padding-bottom: 50px;
+}
 
 

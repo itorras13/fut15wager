@@ -57,9 +57,14 @@ p {
     line-height: 23px;
 }
 #system{
-  color: white;
+  color: #3f94d0;
   font-size: 20px;
 }
+#system2{
+    color: #3f94d0;
+    font-size: 20px;
+}
+
 .button {
     display: inline-block;
     padding: 18px 21px;
@@ -87,6 +92,11 @@ p {
     padding-top: 65px;
     padding-bottom: 65px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.09);
+}
+.section.match{
+    padding-top: 10px;
+    padding-bottom: 65px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.09);  
 }
 .section.hero {
     padding-bottom: 0px;
@@ -191,6 +201,13 @@ p {
     text-decoration: none;
     text-transform: uppercase;
 }
+.hero-header.player2{
+    padding-top: 28px;
+}
+
+.player2Div{
+    padding-left: 135px;
+}
 .hero-header:hover {
     border-bottom-color: black;
     color:  #3366CC;
@@ -203,9 +220,7 @@ p {
     border-bottom-color: transparent;
 }
 
-#system{
-    color: #3f94d0;
-}
+
 .hero-subtitle {
     margin-bottom: 20px;
     color: rgba(255, 255, 255, 0.83);

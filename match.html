@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="utf-8">
+    <title>fut15wager</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Webflow">
+    <link rel="stylesheet" type="text/css" href="css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="css/webflow.css">
+    <link rel="stylesheet" type="text/css" href="css/more.css">
+    <link rel="stylesheet" type="text/css" href="css/fut15wager.webflow.css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+    <script src="/javascript/singleMatchScript.js"></script>
+</head>
+
+<body>
+    <div id="fb-root"></div>
+
+    <header class="navbar">
+        <div class="w-container">
+            <div class="w-row">
+                <div class="w-col w-col-4 w-clearfix">
+                    <a href="/index.html">
+                        <img class="logo" src="images/fut15.jpg" width="200" alt="53d7cc651c6ecb463cc12bd4_fut15.jpg">
+                    </a>
+                </div>
+                <div class="w-col w-col-8 nav-column">
+                    <br>
+                    <br>
+                    <a class="nav-link" id="inAMatch" href="/match.html"></a>
+                    <a class="nav-link" href="/allMatches.html">Matches</a>
+                    <a class="nav-link" id="offers" href="/offers.html">Offers</a>
+                    <a class="nav-link" href="/myprofile.html">My Profile</a>
+                    <a class="nav-link" href="#" onclick="logOut();return false;">Log Out</a>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="section match profile">
+        <div class="w-container">
+            <div class="w-row">
+                <div class="w-col w-col-6 vertical-line">
+                    <span id="userInfo">
+                    </span>
+                    <br><br>
+                    <span id='system'>
+                    </span>
+
+                </div>
+                <div class="w-col w-col-6 right player2Div">
+
+                    <span id="userInfo2">
+                    </span>
+                    <br><br>
+                    <span id='system2'>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="w-clearfix section" id="features">
+        <div class="w-container">
+            <div class="w-row">
+                <div class="w-col w-col-7">
+                     <!-- <h3>Ratings</h3> -->
+                </div>
+                <div id="buttonArea" class="w-col w-col-5 right">
+                    
+                </div>
+            </div>
+            <div class="w-row">
+                <div class="w-col w-col-7">
+                    <!-- <div class="w-col w-col-4 w-col-small-4 w-col-tiny-4">
+                        <div id="thumbsUp" class="icon-title">3 Thumbs Up</div>
+                        <img src="images/thumbs up.jpeg" width="57" alt="53d7d4d8699522e03d4d76b2_thumbs%20up.jpeg">
+                    </div>
+                    <div class="w-col w-col-4 w-col-small-4 w-col-tiny-4">
+                        <div id="thumbsDown" class="icon-title">1 Thumbs Down</div>
+                        <img src="images/thumbs down.jpeg" width="67" alt="53d7d4ec8b6016c574b8350c_thumbs%20down.jpeg">
+                    </div>
+                    <div class="w-col w-col-4 w-col-small-4 w-col-tiny-4">
+                        <div id="badSignal" class="icon-title">1 Bad Signal(s)</div>
+                        <img src="images/no signal.png" width="65" alt="53d7d4fd699522e03d4d76b5_no%20signal.png">
+                    </div> -->
+                </div>
+                <div class="w-col w-col-5">
+                    <!-- <form id="createForm" style="visibility: hidden">
+                        <fieldset>
+                            Title:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                            <input type="text" id="title" maxlength="30" required>
+                            <br><br>
+                            <span id="counter"></span><br>Description:
+                            <textarea onkeyup="textCounter(this,'counter',100);" maxlength="100" rows="4" cols="30" id="info" form="createForm" required>Enter message here...</textarea>
+                        </fieldset>
+                        <br>
+                        <input class="shabu-button signup-button blue small" type="button" id="submit" value="Submit"/>
+                    </form> -->
+                </div>
+            </div>
+        </div>
+        <div class="w-col w-col-6 center">
+        </div>
+    </div>
+    </div>
+    </div>
+    <div class="section grey footer">
+        <div class="w-container">
+            <p class="footer-text">fut15wager copyright – FIFA 15, FIFA 14 and all FIFA assets property of EA&nbsp;Sports.&nbsp;&nbsp;</p>
+            <div class="button-block">
+                <a class="w-inline-block social-button" href="mailto:itorras13@gmail.com?subject=fut15wager" target="_blank">
+                    <img src="images/email-icon.png" width="21px" alt="52af8da2aed63fb91400000f_email-icon.png">
+                </a>
+                <a class="w-inline-block social-button" href="http://facebook.com/nacho.torras.3" target="_blank">
+                    <img src="images/facebook-icon.png" width="21px" alt="52af8da8aed63fb914000010_facebook-icon.png">
+                </a>
+                <a class="w-inline-block social-button" href="http://twitter.com/nachdacratch" target="_blank">
+                    <img src="images/twitter-icon.png" width="21px" alt="52af8db1aed63fb914000011_twitter-icon.png">
+                </a>
+                <br>
+                <br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                <div class="fb-like" data-href="https://fut15wager.com" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
+            </div>
+
+            <img class="logo-in-footer" src="images/fut15.jpg" width="300" alt="53d7cc651c6ecb463cc12bd4_fut15.jpg">
+        </div>
+    </div>
+</body>
+
+</html>

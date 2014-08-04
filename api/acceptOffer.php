@@ -25,7 +25,7 @@ $selected = mysql_select_db("fut",$dbhandle)
 // }
 mysql_query("UPDATE offers SET open=0 WHERE matchNumber=" .$match);
 mysql_query("UPDATE matches SET status=1,player2=" .$player2ID. " WHERE matchID=" .$match);
-mysql_query("UPDATE matches SET status=3 WHERE player1=" .$player2ID);
+mysql_query("UPDATE matches SET status=4 WHERE player1=" .$player2ID);
 
 
 mysql_close($dbhandle);
