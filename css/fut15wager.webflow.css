@@ -1,5 +1,5 @@
 body {
-    font-family: Montserrat, sans-serif;
+    font: helvetica,"helvetica neue",arial,sans-serif;
     color: #333;
     font-size: 12px;
     line-height: 20px;
@@ -202,11 +202,11 @@ p {
     text-transform: uppercase;
 }
 .hero-header.player2{
-    padding-top: 28px;
+    padding-top: 25px;
 }
 
 .player2Div{
-    padding-left: 135px;
+    padding-left: 90px;
 }
 .hero-header:hover {
     border-bottom-color: black;
