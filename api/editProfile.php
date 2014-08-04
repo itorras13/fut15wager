@@ -22,7 +22,7 @@ if (!$checkUserID) {
     die('Query failed to execute for some reason');
 }
 else{
-	echo "Your settings have been saved";
+	echo "Your profile have been saved";
 }
 
 

@@ -199,6 +199,9 @@ p {
     color: white;
     text-shadow: rgba(0, 0, 0, 0.7) -4px -3px 0px;*/
 }
+.hero-header.index:hover{
+    border-bottom-color: transparent;
+}
 
 #system{
     color: #3f94d0;
