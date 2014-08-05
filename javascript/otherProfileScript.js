@@ -123,31 +123,27 @@
         });
         $.ajax({
             url: "/api/currentMatchAPI2.php?q=" + qParam,
-            //dataType: 'json',
+            dataType: 'json',
             success: function(result) {
-                document.getElementById('profileMatch').innerHTML = result;
-                if(result==="No current games open."){
-                      
-                }
-                else if(result==="Currently in a match."){
-                    document.getElementById('inAMatch').innerHTML = 'Current Match';
-                }
-                else{
+                if(result.message1==="open"){
+                    document.getElementById('profileMatch').innerHTML = result.message2;
                     document.getElementById('buttonArea').innerHTML = '<a class="shabu-button signup-button blue" href="#" onclick="showForm();return false;">Make an Offer</a>';
+                } else if(result.message1==="none") {
+                    document.getElementById('profileMatch').innerHTML = result.message2;
+                } else {
+                    document.getElementById('profileMatch').innerHTML = 'He is in a match.';
                 }
             }
-        });
+                });
         $.ajax({
-            url: "/api/currentMatchAPI2.php?q=" + id,
-            //dataType: 'json',
+            url: "/api/currentMatchAPI2.php?q=" + uid,
+            dataType: 'json',
             success: function(result) {
-                if(result==="No current games open."){
-
+                if(result.message1==="open"){
+                } else if(result.message1==="none") {
                 } else {
-                    document.getElementById('profileMatch').innerHTML = "You are already in a match.";
-                    document.getElementById('buttonArea').innerHTML = "";
                     document.getElementById('inAMatch').innerHTML = 'Current Match';
-                    document.getElementById('inAMatch').href=result; 
+                    document.getElementById('inAMatch').href=result.message2; 
                 }
             }
         });

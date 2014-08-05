@@ -16,7 +16,7 @@ $dbhandle = mysql_connect($hostname, $username, $password)
 $selected = mysql_select_db("fut",$dbhandle) 
   or die("Could not select examples");
 
-$checkUserID = mysql_query("UPDATE users SET username='" .$username1. "', system='" .$editSystem. "' WHERE id=" .$q);
+$checkUserID = mysql_query("UPDATE users SET gamerTag='" .$username1. "', system='" .$editSystem. "' WHERE id=" .$q);
 
 if (!$checkUserID) {
     die('Query failed to execute for some reason');

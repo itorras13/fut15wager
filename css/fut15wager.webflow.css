@@ -64,6 +64,10 @@ p {
     color: #3f94d0;
     font-size: 20px;
 }
+#matchInfo{
+    color: #3f94d0;
+    font-size: 20px;
+}
 
 .button {
     display: inline-block;

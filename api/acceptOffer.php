@@ -16,15 +16,14 @@ $dbhandle = mysql_connect($hostname, $username, $password)
 $selected = mysql_select_db("fut",$dbhandle) 
   or die("Could not select examples");
 
-//execute the SQL query and return records
-// $result = mysql_query("SELECT open FROM offers WHERE open>0 AND playerTo=" .$q);
-// //fetch tha data from the database
-// $i=0;
-// while ($row = mysql_fetch_array($result)) {
-//    $i++;
-// }
+$result = mysql_query("SELECT info FROM offers WHERE open>0 AND matchNumber=" .$match);
+while ($row = mysql_fetch_array($result)) {
+	$info = $row{'info'};
+}
+
+
 mysql_query("UPDATE offers SET open=0 WHERE matchNumber=" .$match);
-mysql_query("UPDATE matches SET status=1,player2=" .$player2ID. " WHERE matchID=" .$match);
+mysql_query("UPDATE matches SET status=1,player2=" .$player2ID. ",offerTaken='" .$info. "' WHERE matchID=" .$match);
 mysql_query("UPDATE matches SET status=4 WHERE player1=" .$player2ID);
 
 

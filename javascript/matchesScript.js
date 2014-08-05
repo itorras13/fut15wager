@@ -69,13 +69,13 @@
     function loggedIn(id) {
         $.ajax({
             url: "/api/currentMatchAPI2.php?q=" + id,
-            //dataType: 'json',
+            dataType: 'json',
             success: function(result) {
-                if(result==="No current games open."){
-
+                if(result.message1==="open"){
+                } else if(result.message1==="none") {
                 } else {
                     document.getElementById('inAMatch').innerHTML = 'Current Match';
-                    document.getElementById('inAMatch').href=result; 
+                    document.getElementById('inAMatch').href=result.message2; 
                 }
             }
         });

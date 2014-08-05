@@ -22,7 +22,7 @@ while ($row = mysql_fetch_array($result)) {
    // echo "Sytem: " . $row{'system'} . "<br>Username: " . $row{'username'};
 	$phpdate = strtotime( $row{'dayMade'} );
 	$date = date( 'F j', $phpdate );
-    echo "<span id='red'>Open game:</span> <br>Created:<span id='red'> " .$date. ".</span> <br>Title:<span id='red'> " .$row{'title'}. "</span><br> Info:<span id='red'> " .$row{'info'} ;
+    echo json_encode(array("message1" => open,"message2" => "<span id='red'>Open game</span> <br>Created:<span id='red'> " .$date. ".</span> <br>Title:<span id='red'> " .$row{'title'}. "</span><br> Info:<span id='red'> " .$row{'info'})) ;
 }
 if($i==0){
 	$checkMatches = mysql_query("SELECT matchID FROM matches WHERE (status=1 OR status=2) AND (player1=" .$q. " OR player2=" .$q. ")");
@@ -33,9 +33,9 @@ if($i==0){
       $i=1;
 	}
 	if($i==0){
-    	echo "No current games open.";
+    	echo json_encode(array("message1" => none, "message2"=> "No current games open."));
     } else {
-    	echo "/match.html?id=" .$id;
+    	echo json_encode(array("message1" => in, "message2"=> "/match.html?id=" .$id));
     }
 }
 

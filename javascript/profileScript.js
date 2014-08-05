@@ -111,14 +111,15 @@
                 });
                 $.ajax({
                     url: "/api/currentMatchAPI2.php?q=" + uid,
-                    //dataType: 'json',
+                    dataType: 'json',
                     success: function(result) {
-                        document.getElementById('profileMatch').innerHTML = result;
-                        if(result==="No current games open."){
-
+                        if(result.message1==="open"){
+                            document.getElementById('profileMatch').innerHTML = result.message2;
+                        } else if(result.message1==="none") {
+                            document.getElementById('profileMatch').innerHTML = result.message2;
                         } else {
                             document.getElementById('inAMatch').innerHTML = 'Current Match';
-                            document.getElementById('inAMatch').href=result; 
+                            document.getElementById('inAMatch').href=result.message2; 
                             document.getElementById('profileMatch').innerHTML = 'You are in a match.';
                         }
                     }

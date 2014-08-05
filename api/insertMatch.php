@@ -37,7 +37,7 @@ else if (mysql_num_rows($checkUserID) != 0) {
     echo "You can only have one match open at a time.";
 }
 else if($sytem='null'){
-  echo "Please insert a username and system in your profile before doing anything else!";
+  echo "Please insert your gamertag and system in your profile before doing anything else!";
 }
 else {
     mysql_query("INSERT INTO matches (title,info,dayMade,player1,system,status)
