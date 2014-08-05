@@ -74,9 +74,17 @@ function justLoggedIn(uid) {
 }
 
 function loggedIn(uid) {
-    console.log('Welcome!  Fetching your information.... ');
     FB.api('/me', function(response) {
-        document.getElementById('loginButton').innerHTML =
-            '<br><br><a class="nav-link profile" href="/myprofile.html">' + response.name  + ' is logged in!</a>';
+        $.ajax({
+            url: "/api/insertUser.php?id=" + uid + "&first=" + response.first_name + "&last=" + response.last_name,
+            success: function(result) {
+                if (result == 'new') {
+                    alert('Thank you for joining. You will be redirected to your profile page');
+                    window.location.assign("/myprofile.html");
+                } else {
+                    document.getElementById('loginButton').innerHTML ='<br><br><a class="nav-link profile" href="/myprofile.html">' + response.name  + ' is logged in!</a>';
+                }
+            }
+        });
     });
 }

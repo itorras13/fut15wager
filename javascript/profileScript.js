@@ -178,7 +178,7 @@
                         title1: title,
                         info1: info,
                         uid1: uid,
-                        system1: system
+                        system1: system,
                     },
                     function(data) {
                         alert(data);
