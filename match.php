@@ -1,3 +1,16 @@
+<!--<?php
+require_once dirname(__FILE__)."/phpfreechat-1.7/src/phpfreechat.class.php";
+$params = array();
+$params["title"] = "Quick chat";
+$params["nick"] = "guest".rand(1,1000);  // setup the intitial nickname
+$params['firstisadmin'] = true;
+//$params["isadmin"] = true; // makes everybody admin: do not use it on production servers ;)
+$params["serverid"] = md5(__FILE__); // calculate a unique id for this chat
+$params["debug"] = false;
+$chat = new phpFreeChat( $params );
+
+?>-->
+
 <!DOCTYPE html>
 
 <head>
@@ -9,8 +22,14 @@
     <link rel="stylesheet" type="text/css" href="css/webflow.css">
     <link rel="stylesheet" type="text/css" href="css/more.css">
     <link rel="stylesheet" type="text/css" href="css/fut15wager.webflow.css">
+    <!--<link rel="stylesheet" title="classic" type="text/css" href="/phpfreechat-1.7/style/generic.css" />
+    <link rel="stylesheet" title="classic" type="text/css" href="/phpfreechat-1.7/style/header.css" />
+    <link rel="stylesheet" title="classic" type="text/css" href="/phpfreechat-1.7/style/footer.css" />
+    <link rel="stylesheet" title="classic" type="text/css" href="/phpfreechat-1.7/style/menu.css" />
+    <link rel="stylesheet" title="classic" type="text/css" href="/phpfreechat-1.7/style/content.css" />  -->
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
-    <script src="/javascript/profileScript.js"></script>
+    <script src="/javascript/singleMatchScript.js"></script>
+
 </head>
 
 <body>
@@ -36,22 +55,23 @@
             </div>
         </div>
     </header>
-    <div class="section profile">
+    <div class="section match profile">
         <div class="w-container">
             <div class="w-row">
-                <div class="w-col w-col-4">
-                    <span id="facePic">
-
-                    </span>
-                </div>
-                <div class="w-col w-col-6 call-to-action">
+                <div class="w-col w-col-6 vertical-line">
                     <span id="userInfo">
                     </span>
+                    <br><br>
                     <span id='system'>
                     </span>
-                    <br>
-                    <br>
-                    <span id='profileMatch'>
+
+                </div>
+                <div class="w-col w-col-6 right player2Div">
+
+                    <span id="userInfo2">
+                    </span>
+                    <br><br>
+                    <span id='system2'>
                     </span>
                 </div>
             </div>
@@ -60,40 +80,29 @@
     <div class="w-clearfix section" id="features">
         <div class="w-container">
             <div class="w-row">
-                <div class="w-col w-col-7">
-                    <h3>Ratings</h3>
+                <div class="w-col w-col-4">
+                    <h3>Click button when game is over</h3>
                 </div>
-                <div id="buttonArea" class="w-col w-col-5 right">
-                    
+                <div id="buttonArea" class="w-col w-col-3 center">
+                     <h3>Match Info</h3>
+                </div>
+                <div class="w-col w-col-5 right">
+                    <h3>Message the player to set a time to play</h3>
                 </div>
             </div>
             <div class="w-row">
-                <div class="w-col w-col-7">
-                    <div class="w-col w-col-4 w-col-small-4 w-col-tiny-4">
-                        <div id="thumbsUp" class="icon-title">0 Thumbs Up</div>
-                        <img src="images/thumbs up.jpeg" width="57" alt="53d7d4d8699522e03d4d76b2_thumbs%20up.jpeg">
-                    </div>
-                    <div class="w-col w-col-4 w-col-small-4 w-col-tiny-4">
-                        <div id="thumbsDown" class="icon-title">0 Thumbs Down</div>
-                        <img src="images/thumbs down.jpeg" width="67" alt="53d7d4ec8b6016c574b8350c_thumbs%20down.jpeg">
-                    </div>
-                    <div class="w-col w-col-4 w-col-small-4 w-col-tiny-4">
-                        <div id="badSignal" class="icon-title">0 Bad Signal(s)</div>
-                        <img src="images/no signal.png" width="65" alt="53d7d4fd699522e03d4d76b5_no%20signal.png">
-                    </div>
+                <div class="w-col w-col-4">
+                    <a class="shabu-button signup-button blue" href="/rate.html" onclick="return confirm('Are you sure the game is over?');". class="shabu-button signup-button blue td">Done</a>
                 </div>
-                <div class="w-col w-col-5">
-                    <form id="createForm" style="visibility: hidden">
-                        <fieldset>
-                            Title:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-                            <input type="text" id="title" maxlength="30" required>
-                            <br><br>
-                            <span id="counter"></span><br>Description:
-                            <textarea onkeyup="textCounter(this,'counter',100);" maxlength="100" rows="4" cols="30" id="info" form="createForm" required>Enter message here...</textarea>
-                        </fieldset>
-                        <br>
-                        <input class="shabu-button signup-button blue small" type="button" id="submit" value="Submit"/>
-                    </form>
+                <div class="w-col w-col-3 center">
+                    <span id="matchInfo">
+
+                    </span>  
+                </div>
+                <div class="w-col w-col-5 right">
+                    <span id="messageLink">
+                        <!--<?php $chat->printChat(); ?>-->
+                    </span>
                 </div>
             </div>
         </div>
@@ -123,10 +132,6 @@
             <img class="logo-in-footer" src="images/fut15.jpg" width="300" alt="53d7cc651c6ecb463cc12bd4_fut15.jpg">
         </div>
     </div>
-<script type="text/javascript">
-  var FHChat = {product_id: "288efa1c0317"};
-  FHChat.properties={};FHChat.set=function(key,data){this.properties[key]=data};!function(){var a,b;return b=document.createElement("script"),a=document.getElementsByTagName("script")[0],b.src="https://chat-client-js.firehoseapp.com/chat-min.js",b.async=!0,a.parentNode.insertBefore(b,a)}();
-</script>
 </body>
 
 </html>

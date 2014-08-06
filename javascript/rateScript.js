@@ -3,8 +3,7 @@
     var uid;
     var player2;
     var player1;
-    var title;
-    var info;
+    var rating;
     function statusChangeCallback(response) {
         console.log('statusChangeCallback');
         console.log(response);
@@ -16,13 +15,13 @@
             // Logged into your app and Facebook.
             id = response.authResponse.userID;
             uid = response.authResponse.userID;
-            if(qParam===""){
-                window.location.assign("/myprofile.html");
-            }
-            if(uid!=player1 && uid!=player2){
-                alert('You are not part of this game');
-                window.location.assign("/myprofile.html");
-            }
+            // if(qParam===""){
+            //     window.location.assign("/myprofile.html");
+            // }
+            // if(uid!=player1 && uid!=player2){
+            //     alert('You are not part of this game');
+            //     window.location.assign("/myprofile.html");
+            // }
             loggedIn(id);
         } else if (response.status === 'not_authorized') {
             // The person is logged into Facebook, but not your app.
@@ -69,11 +68,7 @@
             dataType: 'json',
             success: function(result) {
                 player2 = result.message1;
-                info = result.message3;
-                title = result.message2;
                 player1 = result.message4;
-                offerTaken = result.message5;
-                document.getElementById('rateButton').href="/rate.html?id=" +qParam; 
             }
         });
 
@@ -105,51 +100,26 @@
     // Here we run a very simple test of the Graph API after login is
     // successful.  See statusChangeCallback() for when this call is made.
     function loggedIn(id) {
-        document.getElementById('matchInfo').innerHTML="Title: " + title + "<br>Info: " + info + "<br>Offer Taken: " + offerTaken;
-        $.ajax({
-            url: "/api/currentMatchAPI2.php?q=" + id,
-            dataType: 'json',
-            success: function(result) {
-                if(result.message1==="open"){
-                } else if(result.message1==="none") {
-                } else {
-                    document.getElementById('inAMatch').innerHTML = 'Current Match';
-                    document.getElementById('inAMatch').href=result.message2; 
-                }
-            }
-        });
-        $.ajax({
-            url: "/api/userInfoAPI.php?q=" + id,
-            dataType: 'json',
-            success: function(result) {
-                document.getElementById('system').innerHTML = result.message1;
-                document.getElementById('userInfo').innerHTML = '<h1><a class="hero-header" target ="_blank" href="/myprofile.html">' + result.message7 + '<a/></h1>';
-            }
-        });
         if(player2===uid){
+            rating=player1;
             $.ajax({
                 url: "/api/userInfoAPI.php?q=" + player1,
                 dataType: 'json',
                 success: function(result) {
-                    document.getElementById('system2').innerHTML = result.message1;
-                    document.getElementById('userInfo2').innerHTML = '<h1><a class="hero-header player2" target ="_blank" href="/otherprofile.html?id=' + player1 + '">' + result.message7 + '<a/></h1>';
+                    document.getElementById('system').innerHTML = result.message1;
+                    document.getElementById('userInfo').innerHTML = '<h1><a class="hero-header player2" target ="_blank" href="/otherprofile.html?id=' + player1 + '">' + result.message7 + '<a/></h1>';
                 }
-            });
-            FB.api('/'+player1, function(response) {
-                document.getElementById('messageLink').innerHTML = '<a class="nav-link" target ="_blank" href="' + response.link + '">Message' + response.name + '</a>';
             });
         }
         else if(player1===uid){
+            rating=player2;
             $.ajax({
                 url: "/api/userInfoAPI.php?q=" + player2,
                 dataType: 'json',
                 success: function(result) {
-                    document.getElementById('system2').innerHTML = result.message1;
-                    document.getElementById('userInfo2').innerHTML = '<h1><a class="hero-header player2" target ="_blank" href="/otherprofile.html?id=' + player2 + '">' + result.message7 + '<a/></h1>';
+                    document.getElementById('system').innerHTML = result.message1;
+                    document.getElementById('userInfo').innerHTML = '<h1><a class="hero-header player2" target ="_blank" href="/otherprofile.html?id=' + player2 + '">' + result.message7 + '<a/></h1>';
                 }
-            });
-            FB.api('/'+player2, function(response) {
-                document.getElementById('messageLink').innerHTML = '<a class="nav-link" target ="_blank" href="' + response.link + '">Message ' + response.name + '</a>';
             });
         }
     }
@@ -160,28 +130,32 @@
         window.location.assign("/index.html");
     }
 
-    //Submits offer
-    // $(document).ready(function(){
+    //Submits rating
+    $(document).ready(function(){
 
-    //     $("#submit").click(function(){
-    //         var message = $("#message").val();
-     
-    //         if( message==''|| uid==''|| qParam==''){
-    //             alert("Insertion Failed Some Fields are Blank....!!");
-    //         }
-    //         else{
-    //             // Returns successful data submission message when the entered information is stored in database.
-    //             $.post("/api/insertOffer.php",{ qParam1: qParam, message1: message, uid1: uid},
-    //                  function(data) {
-    //                  alert(data);
-    //                  $('#createForm')[0].reset(); //To reset form fields
-    //                  document.getElementById("createForm").style.visibility="hidden";
-    //                  window.location.assign("/myprofile.html")
-    //             });
-     
-    //         }
-    //     });
-    // });
+    $("#rate").click(function() {
+            var thumbs = $("#thumbs").val();
+            var signal = $("#signal").val();
+
+            if (signal == '' || thumbs == '' || rating == '' || uid== '') {
+                alert("Insertion Failed Some Fields are Blank....!!");
+            } else {
+                // Returns successful data submission message when the entered information is stored in database.
+                $.post("/api/submitRating.php", {
+                        rater1: uid,
+                        rating1: rating,
+                        thumbs1: thumbs,
+                        matchId1: qParam,
+                        signal1: signal,
+                    },
+                    function(data) {
+                        alert(data);
+                        window.location.assign("/myprofile.html")
+                    });
+
+            }
+        });
+    });
 
 
     function textCounter(field, field2, maxlimit) {

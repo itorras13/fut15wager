@@ -13,10 +13,10 @@
             id = response.authResponse.userID;
             uid = response.authResponse.userID;
             if(qParam===""){
-                //window.location.assign("/myprofile.html");
+                window.location.assign("/myprofile.html");
             }
             if(qParam===id){
-                //window.location.assign("/myprofile.html");
+                window.location.assign("/myprofile.html");
             }
             loggedIn(id);
         } else if (response.status === 'not_authorized') {
@@ -96,8 +96,7 @@
         });
         FB.api('/'+qParam, function(response) {
             if(response.name===undefined){
-                alert('3');
-                //window.location.assign("/myprofile.html");
+                window.location.assign("/myprofile.html");
             }
             document.getElementById('userInfo').innerHTML = '<h1><a class="hero-header" target ="_blank" href="' + response.link + '">' + response.name + '<a/></h1>';
             document.getElementById('facePic').innerHTML = '<img class="hero-iphone" src="https://graph.facebook.com/' + qParam + '/picture?type=large&height=200&width=200">';
