@@ -73,9 +73,9 @@
             dataType: 'json',
             success: function(result) {
                 if(result.message1==="open"){
-                     document.getElementById('currentMatch').innerHTML = result2;
+                     document.getElementById('currentMatch').innerHTML = result.message2;
                 } else if(result.message1==="none") {
-                     document.getElementById('currentMatch').innerHTML = result2;
+                     document.getElementById('currentMatch').innerHTML = result.message2;
                 } else {
                     document.getElementById('inAMatch').innerHTML = 'Current Match';
                     document.getElementById('inAMatch').href=result.message2; 

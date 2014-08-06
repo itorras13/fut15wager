@@ -25,12 +25,15 @@ while ($row = mysql_fetch_array($result)) {
     echo json_encode(array("message1" => open,"message2" => "<span id='red'>Open game</span> <br>Created:<span id='red'> " .$date. ".</span> <br>Title:<span id='red'> " .$row{'title'}. "</span><br> Info:<span id='red'> " .$row{'info'})) ;
 }
 if($i==0){
-	$checkMatches = mysql_query("SELECT matchID FROM matches WHERE (status=1 OR status=2) AND (player1=" .$q. " OR player2=" .$q. ")");
+	$checkMatches = mysql_query("SELECT matchID,playerRated FROM matches WHERE (status=1 OR status=2) AND (player1=" .$q. " OR player2=" .$q. ")");
 	if (mysql_num_rows($checkMatches) != 0) {
+      $i=1;
     	while ($row = mysql_fetch_array($checkMatches)) {
         $id= $row{'matchID'};
+        if($row{'playerRated'}==$q){
+            $i=0;
+        }
       }
-      $i=1;
 	}
 	if($i==0){
     	echo json_encode(array("message1" => none, "message2"=> "No current games open."));

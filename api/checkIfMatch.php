@@ -23,16 +23,20 @@ if (mysql_num_rows($checkUserID) != 0) {
     echo "delete";
 }
 else {
-	$checkMatches = mysql_query("SELECT matchID FROM matches WHERE (status=1 OR status=2) AND (player1=" .$q. " OR player2=" .$q. ")");
-	if (mysql_num_rows($checkMatches) != 0) {
+	$checkMatches = mysql_query("SELECT matchID,playerRated FROM matches WHERE (status=1 OR status=2) AND (player1=" .$q. " OR player2=" .$q. ")");
+    if (mysql_num_rows($checkMatches) != 0) {
     	$i=1;
 	}
-	if($i==0){
-    	echo "create";
-    } else {
-    	while ($row = mysql_fetch_array($checkMatches)) {
-    		echo $row{'matchID'};
-    	}
+    else{
+        echo "create";
+    }
+    while ($row = mysql_fetch_array($checkMatches)) {
+        if($row{'playerRated'}==$q){
+            echo "create";
+        }
+        else{
+            echo $row{'matchID'};
+        }
     }
 }
 
