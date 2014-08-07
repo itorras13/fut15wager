@@ -34,13 +34,31 @@ $status =$row{'status'};
 		}
 		if($thumbs=="Up"){
 			mysql_query("UPDATE users SET thumbsUp=thumbsUp+1 WHERE id=" .$rating);
+			if($status==1){
+				mysql_query("UPDATE matches SET ratedUp=1 WHERE matchID=" .$id);
+			}
+			else{
+				mysql_query("UPDATE matches SET ratedUp2=1 WHERE matchID=" .$id);
+			}
 		}
 		else{
 			mysql_query("UPDATE users SET thumbsDown=thumbsDown+1 WHERE id=" .$rating);
+			if($status==1){
+				mysql_query("UPDATE matches SET ratedDown=1 WHERE matchID=" .$id);
+			}
+			else{
+				mysql_query("UPDATE matches SET ratedDown2=1 WHERE matchID=" .$id);
+			}
 		}
 
 		if($signal=="Bad"){
 			mysql_query("UPDATE users SET badSignal=badSignal+1 WHERE id=" .$rating);
+			if($status==1){
+				mysql_query("UPDATE matches SET ratedBad=1 WHERE matchID=" .$id);
+			}
+			else{
+				mysql_query("UPDATE matches SET ratedBad2=1 WHERE matchID=" .$id);
+			}
 		}
 		echo "Your rating has been submitted.";
 	}
