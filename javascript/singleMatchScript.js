@@ -5,6 +5,7 @@
     var player1;
     var title;
     var info;
+
     function statusChangeCallback(response) {
         console.log('statusChangeCallback');
         console.log(response);
@@ -16,10 +17,10 @@
             // Logged into your app and Facebook.
             id = response.authResponse.userID;
             uid = response.authResponse.userID;
-            if(qParam===""){
+            if (qParam === "") {
                 window.location.assign("/myprofile.html");
             }
-            if(uid!=player1 && uid!=player2){
+            if (uid != player1 && uid != player2) {
                 alert('You are not part of this game');
                 window.location.assign("/myprofile.html");
             }
@@ -73,13 +74,13 @@
                 title = result.message2;
                 player1 = result.message4;
                 offerTaken = result.message5;
-                document.getElementById('rateButton').href="/rate.html?id=" +qParam; 
+                document.getElementById('rateButton').href = "/rate.html?id=" + qParam;
             }
         });
 
         FB.getLoginStatus(function(response) {
             statusChangeCallback(response);
-        });        
+        });
     };
 
     (function(d, s, id) {
@@ -105,16 +106,14 @@
     // Here we run a very simple test of the Graph API after login is
     // successful.  See statusChangeCallback() for when this call is made.
     function loggedIn(id) {
-        document.getElementById('matchInfo').innerHTML="Title: " + title + "<br>Info: " + info + "<br>Offer Taken: " + offerTaken;
+        document.getElementById('matchInfo').innerHTML = "Title: " + title + "<br>Info: " + info + "<br>Offer Taken: " + offerTaken;
         $.ajax({
             url: "/api/currentMatchAPI2.php?q=" + id,
             dataType: 'json',
             success: function(result) {
-                if(result.message1==="open"){
-                } else if(result.message1==="none") {
-                } else {
+                if (result.message1 === "open") {} else if (result.message1 === "none") {} else {
                     document.getElementById('inAMatch').innerHTML = 'Current Match';
-                    document.getElementById('inAMatch').href=result.message2; 
+                    document.getElementById('inAMatch').href = result.message2;
                 }
             }
         });
@@ -126,7 +125,7 @@
                 document.getElementById('userInfo').innerHTML = '<h1><a class="hero-header" target ="_blank" href="/myprofile.html">' + result.message7 + '<a/></h1>';
             }
         });
-        if(player2===uid){
+        if (player2 === uid) {
             $.ajax({
                 url: "/api/userInfoAPI.php?q=" + player1,
                 dataType: 'json',
@@ -138,8 +137,7 @@
             FB.api('/'+player1, function(response) {
                 document.getElementById('messageLink').innerHTML = '<a class="nav-link" target ="_blank" href="' + response.link + '">Message' + response.name + '</a>';
             });
-        }
-        else if(player1===uid){
+        } else if (player1 === uid) {
             $.ajax({
                 url: "/api/userInfoAPI.php?q=" + player2,
                 dataType: 'json',
@@ -165,7 +163,7 @@
 
     //     $("#submit").click(function(){
     //         var message = $("#message").val();
-     
+
     //         if( message==''|| uid==''|| qParam==''){
     //             alert("Insertion Failed Some Fields are Blank....!!");
     //         }
@@ -178,7 +176,7 @@
     //                  document.getElementById("createForm").style.visibility="hidden";
     //                  window.location.assign("/myprofile.html")
     //             });
-     
+
     //         }
     //     });
     // });

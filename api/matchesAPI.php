@@ -24,6 +24,9 @@ $result = mysql_query("SELECT dayMade,title,player1,matchID FROM matches WHERE s
 if($system==null){
 	echo "<span class='nOffers'>No matches will be shown until you enter what sytem you have in your profile.</span>";
 }
+else if(mysql_num_rows($result) == 0) {
+    echo "<span class='nOffers'>There are currently no matches open for " .$system. ".</span>";
+}
 else{
 	echo "<span class='nOffers'>Matches shown for: " .$system. ".</span>";
 

@@ -236,7 +236,7 @@ p {
     margin-top: 22px;
     margin-bottom: 12px;
     font-family: Bitter, serif;
-    color: #c1adcc;
+    color: #3f94d0;
     font-size: 17px;
     font-weight: 400;
 }
@@ -275,13 +275,13 @@ p {
     margin-left: 5px;
     padding-top: 7px;
     border-radius: 60px;
-    background-color: #745785;
+    background-color:  #3f94d0;
     -webkit-transition: background-color 300ms ease;
     -o-transition: background-color 300ms ease;
     transition: background-color 300ms ease;
 }
 .social-button:hover {
-    background-color: #f02e4e;
+    background-color: #3366CC;;
 }
 .blog-link {
     -webkit-transition: all 200ms ease;
