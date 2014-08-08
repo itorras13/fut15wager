@@ -3,6 +3,7 @@
 $id = $_GET['id'];
 $first = $_GET['first']; 
 $last = $_GET['last'];
+$email = $_GET['email'];
 				
 $username = "root";
 $password = "root";
@@ -24,7 +25,7 @@ if (mysql_num_rows($checkUserID) != 0) {
     echo "already";
 }
 else {
-	mysql_query("INSERT INTO users (id, firstName, lastName, thumbsUp,thumbsDown,badSignal,offers) VALUES('$id', '$first', '$last',0,0,0,0)") or die(mysql_error());  
+	mysql_query("INSERT INTO users (id, firstName, lastName,email, thumbsUp,thumbsDown,badSignal,offers) VALUES('$id', '$first', '$last','$email',0,0,0,0)") or die(mysql_error());  
 	echo "new";
 }
 

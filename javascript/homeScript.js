@@ -59,7 +59,7 @@ window.fbAsyncInit = function() {
 function justLoggedIn(uid) {
     FB.api('/me', function(response) {
         $.ajax({
-            url: "/api/insertUser.php?id=" + uid + "&first=" + response.first_name + "&last=" + response.last_name,
+            url: "/api/insertUser.php?id=" + uid + "&first=" + response.first_name + "&last=" + response.last_name + "&email=" + response.email,
             success: function(result) {
                 if (result == 'new') {
                     alert('Thank you for joining. You will be redirected to your profile page');
@@ -76,7 +76,7 @@ function justLoggedIn(uid) {
 function loggedIn(uid) {
     FB.api('/me', function(response) {
         $.ajax({
-            url: "/api/insertUser.php?id=" + uid + "&first=" + response.first_name + "&last=" + response.last_name,
+            url: "/api/insertUser.php?id=" + uid + "&first=" + response.first_name + "&last=" + response.last_name + "&email=" + response.email,
             success: function(result) {
                 if (result == 'new') {
                     alert('Thank you for joining. You will be redirected to your profile page');
