@@ -29,7 +29,7 @@ $status =$row{'status'};
 		if($status==2){
 			mysql_query("UPDATE matches SET status=status+2 WHERE matchID=" .$id);
 		}
-		else if($status==1){
+		elseif($status==1){
 			mysql_query("UPDATE matches SET status=status+1,playerRated=" .$rater. " WHERE matchID=" .$id);
 		}
 		if($thumbs=="Up"){

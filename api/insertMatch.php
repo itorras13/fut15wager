@@ -9,6 +9,7 @@ $title=$_POST['title1'];
 $info=$_POST['info1'];
 $system=$_POST['system1'];
 $uid=$_POST['uid1'];
+$email=$_POST['email1'];
 
 //connection to the database
 $dbhandle = mysql_connect($hostname, $username, $password) 
@@ -33,11 +34,11 @@ if (!$checkUserID) {
 if($i==1){
 	echo "You cannot create a game if you are currently in one.";
 }
-else if (mysql_num_rows($checkUserID) != 0) {
+elseif (mysql_num_rows($checkUserID) != 0) {
     echo "You can only have one match open at a time.";
 }
-else if($sytem=='null'){
-  echo "Please insert your gamertag and system in your profile before doing anything else!";
+elseif($sytem=='null' || $email=='null'){
+  echo "Please insert your gamertag, system, and email in your profile before doing anything else!";
 }
 else {
     mysql_query("INSERT INTO matches (title,info,dayMade,player1,system,status)

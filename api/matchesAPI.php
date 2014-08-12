@@ -16,15 +16,16 @@ $selected = mysql_select_db("fut",$dbhandle)
 $result = mysql_query("SELECT system FROM users WHERE id=" .$q);
 while ($row = mysql_fetch_array($result)) {
 	$system = $row{'system'};
+	$email = $row{'email'};
 }
 
 //execute the SQL query and return records
 $result = mysql_query("SELECT dayMade,title,player1,matchID FROM matches WHERE status=0 AND player1!=" .$q. " AND system='" .$system."' ORDER BY dayMade DESC");
 //fetch tha data from the database
-if($system==null){
-	echo "<span class='nOffers'>No matches will be shown until you enter what sytem you have in your profile.</span>";
+if($system=='null' || $email=='null'){
+	echo "<span class='nOffers'>No matches will be shown until you enter your system and email in your profile.</span>";
 }
-else if(mysql_num_rows($result) == 0) {
+elseif(mysql_num_rows($result) == 0) {
     echo "<span class='nOffers'>There are currently no matches open for " .$system. ".</span>";
 }
 else{

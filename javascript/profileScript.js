@@ -2,7 +2,7 @@
     var uid;
     var system;
     var offers;
-
+    var email;
     function statusChangeCallback(response) {
         console.log('statusChangeCallback');
         console.log(response);
@@ -89,6 +89,7 @@
                     success: function(result) {
                         system = result.message5;
                         offers = result.message6;
+                        email = result.message8;
                         document.getElementById('offers').innerHTML = "<span id='nOffers'>(" + offers + ")</span> Offers";
                         document.getElementById('system').innerHTML = result.message1;
                         document.getElementById('thumbsUp').innerHTML = result.message2;
@@ -182,6 +183,7 @@
                         info1: info,
                         uid1: uid,
                         system1: system,
+                        email1: email,
                     },
                     function(data) {
                         alert(data);
