@@ -105,7 +105,7 @@
                     url: "/api/userInfoAPI.php?q=" + qParam,
                     dataType: 'json',
                     success: function(result) {
-                        document.getElementById('system').innerHTML = result.message1;
+                        document.getElementById('system').innerHTML = result.message9;
                         document.getElementById('thumbsUp').innerHTML = result.message2;
                         document.getElementById('thumbsDown').innerHTML = result.message3;
                         document.getElementById('badSignal').innerHTML = result.message4;
@@ -160,17 +160,17 @@
 
         $("#submit").click(function(){
             var message = $("#message").val();
-            document.getElementById("createForm").style.display="none";
-            $('#createForm')[0].reset();
             if( message==''|| uid==''|| qParam==''){
                 alert("Insertion Failed Some Fields are Blank....!!");
             }
             else{
+                document.getElementById("createForm").style.display="none";
+                $('#createForm')[0].reset();
                 // Returns successful data submission message when the entered information is stored in database.
                 $.post("/api/insertOffer.php",{ qParam1: qParam, message1: message, uid1: uid},
                      function(data) {
                      alert(data);
-                     //window.location.assign("/myprofile.html");
+                     window.location.assign("/myprofile.html");
                 });
      
             }

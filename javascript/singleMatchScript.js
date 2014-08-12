@@ -121,7 +121,7 @@
             url: "/api/userInfoAPI.php?q=" + id,
             dataType: 'json',
             success: function(result) {
-                document.getElementById('system').innerHTML = result.message1;
+                document.getElementById('system').innerHTML = result.message9;
                 document.getElementById('userInfo').innerHTML = '<h1><a class="hero-header" target ="_blank" href="/myprofile.html">' + result.message7 + '<a/></h1>';
             }
         });
@@ -130,7 +130,7 @@
                 url: "/api/userInfoAPI.php?q=" + player1,
                 dataType: 'json',
                 success: function(result) {
-                    document.getElementById('system2').innerHTML = result.message1;
+                    document.getElementById('system2').innerHTML = result.message9;
                     document.getElementById('userInfo2').innerHTML = '<h1><a class="hero-header player2" target ="_blank" href="/otherprofile.html?id=' + player1 + '">' + result.message7 + '<a/></h1>';
                 }
             });
@@ -142,7 +142,7 @@
                 url: "/api/userInfoAPI.php?q=" + player2,
                 dataType: 'json',
                 success: function(result) {
-                    document.getElementById('system2').innerHTML = result.message1;
+                    document.getElementById('system2').innerHTML = result.message9;
                     document.getElementById('userInfo2').innerHTML = '<h1><a class="hero-header player2" target ="_blank" href="/otherprofile.html?id=' + player2 + '">' + result.message7 + '<a/></h1>';
                 }
             });
