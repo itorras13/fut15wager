@@ -93,9 +93,13 @@
             url: "/api/actualOffersAPI.php?q=" + id,
             //dataType: 'json',
             success: function(result) {
-                if(result=='none'){
+                var res = result.split("||");
+                if(res[0]=='none'){
                     document.getElementById('currentMatch').innerHTML = "";
                      $("#table").append("<span class='nOffers'>You have no offers.</span>");
+                     if(res[1]!=null){
+                        $("#table").append(res[1]);
+                     }
                 }
                 else{
                     $("#table").append(result);

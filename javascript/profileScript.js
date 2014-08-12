@@ -139,7 +139,7 @@
         var code = '<form id="createForm"><fieldset>System:<select id="editSystem" name="editSystem" required><option value="Xbox 360">Xbox 360</option>';
             code += '<option value="Xbox One">Xbox One</option><option value="PS4">PS4</option><option value="PS3">PS3</option>';
             code += '<option value="PC">PC</option></select><br>Username:<input type="text" id="username" maxlength="20" required>';
-            code += '<br>Email:<input type="text" id="email" maxlength="30" required>';
+            code += '<br>Email:<input type="text" id="email" maxlength="30" required><br>The e-mail will be used to send you notifications of when someone makes you an offer, or when someone accepts your offer.';
             code +=  '</fieldset><br><input class="shabu-button signup-button blue small" type="button" id="edit" value="Save"/></form>';
         document.getElementById('system').innerHTML = code;
         $("#edit").click(function() {
