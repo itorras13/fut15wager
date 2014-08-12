@@ -138,13 +138,15 @@
         var code = '<form id="createForm"><fieldset>System:<select id="editSystem" name="editSystem" required><option value="Xbox 360">Xbox 360</option>';
             code += '<option value="Xbox One">Xbox One</option><option value="PS4">PS4</option><option value="PS3">PS3</option>';
             code += '<option value="PC">PC</option></select><br>Username:<input type="text" id="username" maxlength="20" required>';
+            code += '<br>Email:<input type="text" id="email" maxlength="30" required>';
             code +=  '</fieldset><br><input class="shabu-button signup-button blue small" type="button" id="edit" value="Save"/></form>';
         document.getElementById('system').innerHTML = code;
         $("#edit").click(function() {
             var editSystem = $("#editSystem").val();
             var username = $("#username").val();
+            var email = $("#email").val();
 
-            if (editSystem == '' || username == '' || uid == '') {
+            if (editSystem == '' || username == '' || uid == '' || email=='') {
                 alert("Insertion Failed Some Fields are Blank....!!");
             } else {
                 // Returns successful data submission message when the entered information is stored in database.
@@ -152,6 +154,7 @@
                         username1: username,
                         editSystem1: editSystem,
                         uid1: uid,
+                        email1: email,
                     },
                     function(data) {
                         alert(data);

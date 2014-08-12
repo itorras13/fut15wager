@@ -9,6 +9,7 @@ $hostname = "localhost";
 $username1=$_POST['username1'];
 $editSystem=$_POST['editSystem1'];
 $q=$_POST['uid1'];
+$email=$_POST['email1'];
 //connection to the database
 $dbhandle = mysql_connect($hostname, $username, $password) 
   or die("Unable to connect to MySQL");
@@ -16,7 +17,7 @@ $dbhandle = mysql_connect($hostname, $username, $password)
 $selected = mysql_select_db("fut",$dbhandle) 
   or die("Could not select examples");
 
-$checkUserID = mysql_query("UPDATE users SET gamerTag='" .$username1. "', system='" .$editSystem. "' WHERE id=" .$q);
+$checkUserID = mysql_query("UPDATE users SET gamerTag='" .$username1. "', system='" .$editSystem. "',email='" .$email. "' WHERE id=" .$q);
 
 if (!$checkUserID) {
     die('Query failed to execute for some reason');
