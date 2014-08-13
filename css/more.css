@@ -123,6 +123,10 @@ form{
 	color: #3366CC;
 }
 
+.w-container.match{
+	max-width: 1100px;
+}
+
 
 
 

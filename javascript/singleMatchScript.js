@@ -134,9 +134,9 @@
                     document.getElementById('userInfo2').innerHTML = '<h1><a class="hero-header player2" target ="_blank" href="/otherprofile.html?id=' + player1 + '">' + result.message7 + '<a/></h1>';
                 }
             });
-            FB.api('/'+player1, function(response) {
-                document.getElementById('messageLink').innerHTML = '<a class="nav-link" target ="_blank" href="' + response.link + '">Message' + response.name + '</a>';
-            });
+            // FB.api('/'+player1, function(response) {
+            //     document.getElementById('messageLink').innerHTML = '<a class="nav-link" target ="_blank" href="' + response.link + '">Message' + response.name + '</a>';
+            // });
         } else if (player1 === uid) {
             $.ajax({
                 url: "/api/userInfoAPI.php?q=" + player2,
@@ -146,9 +146,9 @@
                     document.getElementById('userInfo2').innerHTML = '<h1><a class="hero-header player2" target ="_blank" href="/otherprofile.html?id=' + player2 + '">' + result.message7 + '<a/></h1>';
                 }
             });
-            FB.api('/'+player2, function(response) {
-                document.getElementById('messageLink').innerHTML = '<a class="nav-link" target ="_blank" href="' + response.link + '">Message ' + response.name + '</a>';
-            });
+            // FB.api('/'+player2, function(response) {
+            //     document.getElementById('messageLink').innerHTML = '<a class="nav-link" target ="_blank" href="' + response.link + '">Message ' + response.name + '</a>';
+            // });
         }
     }
     //If not logged in
