@@ -4,6 +4,7 @@ $player1ID = $_GET['q'];
 $player2ID = $_GET['q2'];
 $offerId = $_GET['offerId'];
 $match = $_GET['match'];
+$i=0;
 				
 $username = "root";
 $password = "root";
@@ -25,32 +26,34 @@ $selected = mysql_select_db("fut",$dbhandle)
 $result = mysql_query("SELECT info FROM offers WHERE open>0 AND matchNumber=" .$match);
 while ($row = mysql_fetch_array($result)) {
 	$info = $row{'info'};
+  $i=1;
 }
 
+if($i==1){
+  mysql_query("UPDATE offers SET open=0 WHERE matchNumber=" .$match);
+  mysql_query("UPDATE matches SET status=1,player2=" .$player2ID. ",offerTaken='" .$info. "' WHERE matchID=" .$match);
+  mysql_query("UPDATE matches SET status=4 WHERE player1=" .$player2ID);
 
-mysql_query("UPDATE offers SET open=0 WHERE matchNumber=" .$match);
-mysql_query("UPDATE matches SET status=1,player2=" .$player2ID. ",offerTaken='" .$info. "' WHERE matchID=" .$match);
-mysql_query("UPDATE matches SET status=4 WHERE player1=" .$player2ID);
+  $result2 = mysql_query("SELECT email FROM users WHERE id=" .$player2ID);
+  while ($row2 = mysql_fetch_array($result2)) {
+  	$email = $row2{'email'};
+  }
+  $result3 = mysql_query("SELECT info,title,offerTaken FROM matches WHERE matchID=" .$match);
+  while ($row3 = mysql_fetch_array($result3)) {
+  	$info2 = $row3{'info'};
+  	$title = $row3{'title'};
+  	$message = $row3{'offerTaken'};
+  }
 
-$result2 = mysql_query("SELECT email FROM users WHERE id=" .$player2ID);
-while ($row2 = mysql_fetch_array($result2)) {
-	$email = $row2{'email'};
+  $mailer = Swift_Mailer::newInstance($transporter);
+    $message = Swift_Message::newInstance('Fut 15 Wager')
+    ->setFrom('itorras13@gmail.com')
+    ->setTo($email)
+    ->setBody('<html><head></head><body>Your offer has been accepted.<br><br>For Match<br>Title: ' .$title. '<br>Info: ' .$info2. '<br>' .
+      '<br>OfferTaken<br>Message: ' .$message. '<br><br><a href="http://localhost:8888/myprofile.html">Go to your Profile</a></body></html>',
+      'text/html');
+  $result = $mailer->send($message);
 }
-$result3 = mysql_query("SELECT info,title,offerTaken FROM matches WHERE matchID=" .$match);
-while ($row3 = mysql_fetch_array($result3)) {
-	$info2 = $row3{'info'};
-	$title = $row3{'title'};
-	$message = $row3{'offerTaken'};
-}
-
-$mailer = Swift_Mailer::newInstance($transporter);
-  $message = Swift_Message::newInstance('Fut 15 Wager')
-  ->setFrom('itorras13@gmail.com')
-  ->setTo($email)
-  ->setBody('<html><head></head><body>Your offer has been accepted.<br><br>For Match<br>Title: ' .$title. '<br>Info: ' .$info2. '<br>' .
-    '<br>OfferTaken<br>Message: ' .$message. '<br><br><a href="http://localhost:8888/myprofile.html">Go to your Profile</a></body></html>',
-    'text/html');
-$result = $mailer->send($message);
 
 mysql_close($dbhandle);
 

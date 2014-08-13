@@ -136,6 +136,7 @@
     }
 
     function editProfile(){
+        var precode = $("#system").html();
         var code = '<form id="createForm"><fieldset>System:<select id="editSystem" name="editSystem" required><option value="Xbox 360">Xbox 360</option>';
             code += '<option value="Xbox One">Xbox One</option><option value="PS4">PS4</option><option value="PS3">PS3</option>';
             code += '<option value="PC">PC</option></select><br>Username:<input type="text" id="username" maxlength="20" required>';
@@ -148,7 +149,8 @@
             var email = $("#email").val();
 
             if (editSystem == '' || username == '' || uid == '' || email=='') {
-                alert("Insertion Failed Some Fields are Blank....!!");
+                alert("Some fields were left blank.");
+                document.getElementById('system').innerHTML = precode;
             } else {
                 // Returns successful data submission message when the entered information is stored in database.
                 $.post("/api/editProfile.php", {

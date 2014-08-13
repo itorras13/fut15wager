@@ -20,6 +20,7 @@ if(mysql_num_rows($result) == 0) {
 }
 else{
 	$i=1;
+	echo "<span id='currentMatch'>If you accept an offer and it says you are not in a current match, then the player deleted the offer before you accepted it.</span>";
 	echo " <br><br><table><tr><th>Player</th><th>Info</th><th>Date</th><th>Accept</th><th>Decline</th></tr>";
 	while ($row = mysql_fetch_array($result)) {
 		//Changes date to just month-day-year
