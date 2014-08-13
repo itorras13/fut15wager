@@ -125,6 +125,20 @@
                 document.getElementById('userInfo').innerHTML = '<h1><a class="hero-header" target ="_blank" href="/myprofile.html">' + result.message7 + '<a/></h1>';
             }
         });
+        var scroll=0;
+        setInterval(function()
+        { 
+            $.ajax({
+                url: "/api/messagesAPI.php?q=" + qParam + "&player1=" + player1 + "&player2=" + player2,
+                success: function(result) {
+                    document.getElementById('messages').innerHTML = result;
+                    if(scroll==0){
+                        $('#messages').scrollTop($('#messages')[0].scrollHeight);
+                        scroll=1;
+                    }
+                }
+            });
+        }, 2000);
         if (player2 === uid) {
             $.ajax({
                 url: "/api/userInfoAPI.php?q=" + player1,
@@ -158,28 +172,25 @@
         window.location.assign("/index.html");
     }
 
-    //Submits offer
-    // $(document).ready(function(){
+    $(document).ready(function(){
 
-    //     $("#submit").click(function(){
-    //         var message = $("#message").val();
+        $("#sendMessage").click(function(){
+            var message = $("#messageInput").val();
 
-    //         if( message==''|| uid==''|| qParam==''){
-    //             alert("Insertion Failed Some Fields are Blank....!!");
-    //         }
-    //         else{
-    //             // Returns successful data submission message when the entered information is stored in database.
-    //             $.post("/api/insertOffer.php",{ qParam1: qParam, message1: message, uid1: uid},
-    //                  function(data) {
-    //                  alert(data);
-    //                  $('#createForm')[0].reset(); //To reset form fields
-    //                  document.getElementById("createForm").style.visibility="hidden";
-    //                  window.location.assign("/myprofile.html")
-    //             });
+            if( message==''|| uid==''|| qParam==''){
+                alert("Insertion Failed Some Fields are Blank....!!");
+            }
+            else{
+                // Returns successful data submission message when the entered information is stored in database.
+                $.post("/api/insertMessage.php",{ qParam1: qParam, message1: message, uid1: uid},
+                     function(data) {
+                        $("#messageInput").val('');
+                        $('#messages').scrollTop($('#messages')[0].scrollHeight);
+                });
 
-    //         }
-    //     });
-    // });
+            }
+        });
+    });
 
 
     function textCounter(field, field2, maxlimit) {
