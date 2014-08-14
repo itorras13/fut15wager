@@ -170,7 +170,7 @@
                 $.post("/api/insertOffer.php",{ qParam1: qParam, message1: message, uid1: uid},
                      function(data) {
                      alert(data);
-                     window.location.assign("/myprofile.html");
+                     //window.location.assign("/myprofile.html");
                 });
      
             }
