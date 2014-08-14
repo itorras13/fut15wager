@@ -15,13 +15,13 @@
             // Logged into your app and Facebook.
             id = response.authResponse.userID;
             uid = response.authResponse.userID;
-            // if(qParam===""){
-            //     window.location.assign("/myprofile.html");
-            // }
-            // if(uid!=player1 && uid!=player2){
-            //     alert('You are not part of this game');
-            //     window.location.assign("/myprofile.html");
-            // }
+            if(qParam===""){
+                window.location.assign("/myprofile.html");
+            }
+            if(uid!=player1 && uid!=player2){
+                alert('You are not part of this game');
+                window.location.assign("/myprofile.html");
+            }
             loggedIn(id);
         } else if (response.status === 'not_authorized') {
             // The person is logged into Facebook, but not your app.
