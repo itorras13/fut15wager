@@ -136,8 +136,9 @@
     $("#rate").click(function() {
             var thumbs = $("#thumbs").val();
             var signal = $("#signal").val();
+            var review = $("#review").val();
 
-            if (signal == '' || thumbs == '' || rating == '' || uid== '') {
+            if (signal == '' || thumbs == '' || rating == '' || uid== '' || review == '' || review == 'Enter a review of why thumbs up or down...') {
                 alert("Insertion Failed Some Fields are Blank....!!");
             } else {
                 // Returns successful data submission message when the entered information is stored in database.
@@ -147,6 +148,7 @@
                         thumbs1: thumbs,
                         matchId1: qParam,
                         signal1: signal,
+                        review1: review,
                     },
                     function(data) {
                         alert(data);

@@ -22,11 +22,11 @@
             <div class="w-row">
                 <div class="w-col w-col-4 w-clearfix">
                     <a href="/index.html">
-                        <img class="logo" src="images/fut15.jpg" width="200" alt="53d7cc651c6ecb463cc12bd4_fut15.jpg">
+                        <img class="logo" src="images/logo2.jpg" width="200">
                     </a>
                 </div>
                 <div class="w-col w-col-8 nav-column">
-                    
+
                 </div>
             </div>
         </div>
@@ -61,6 +61,10 @@
                                     <option value="Good">Good Signal</option>
                                     <option value="Bad">Bad Signal</option>
                                 </select>
+                                <br><br>
+                                <span id="counter"></span>
+                                <br>Review(required):
+                                <textarea onkeyup="textCounter(this,'counter',100);" maxlength="100" rows="2" cols="40" id="review" form="createForm" required>Enter a review of why thumbs up or down...</textarea>
                             </fieldset>
                             <br>
                             <input onclick="return confirm('Are these your honest ratings?');" class="shabu-button signup-button blue small" type="button" id="rate" value="Rate" />

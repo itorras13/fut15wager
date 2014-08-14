@@ -11,6 +11,7 @@ $rating=$_POST['rating1'];
 $thumbs=$_POST['thumbs1'];
 $signal=$_POST['signal1'];
 $id=$_POST['matchId1'];
+$review=$_POST['review1'];
 //connection to the database
 $dbhandle = mysql_connect($hostname, $username, $password) 
   or die("Unable to connect to MySQL");
@@ -27,10 +28,11 @@ $status =$row{'status'};
 
 	if($rater!=$playerRated && $status!=4){
 		if($status==2){
-			mysql_query("UPDATE matches SET status=status+2 WHERE matchID=" .$id);
+			mysql_query("UPDATE matches SET review2='" .$review. "',status=status+2 WHERE matchID=" .$id);
 		}
 		elseif($status==1){
-			mysql_query("UPDATE matches SET status=status+1,playerRated=" .$rater. " WHERE matchID=" .$id);
+			echo $review;
+			mysql_query("UPDATE matches SET review1='" .$review. "',status=status+1,playerRated=" .$rater. " WHERE matchID=" .$id) or die(mysql_error());
 		}
 		if($thumbs=="Up"){
 			mysql_query("UPDATE users SET thumbsUp=thumbsUp+1 WHERE id=" .$rating);
