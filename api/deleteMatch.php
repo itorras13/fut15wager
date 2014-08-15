@@ -25,6 +25,6 @@ mysql_query("UPDATE matches SET status=4 WHERE status=0 AND player1=" .$q);
 
 mysql_close($dbhandle);
 
-header("Location: http://localhost:8888/myprofile.html",TRUE,303);
+header("Location:/myprofile.html",TRUE,303);
 
 ?>

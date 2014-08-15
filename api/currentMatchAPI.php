@@ -22,7 +22,7 @@ while ($row = mysql_fetch_array($result)) {
    // echo "Sytem: " . $row{'system'} . "<br>Username: " . $row{'username'};
 	$phpdate = strtotime( $row{'dayMade'} );
 	$date = date( 'F j', $phpdate );
-    echo "Your current match: <br>Created: " .$date. ". <br>Title: " .$row{'title'}. "<br> Info: " .$row{'info'} ;
+    echo "Your current match: <br>Created: " .$date. " <br>Title: " .$row{'title'}. "<br> Info: " .$row{'info'} ;
 }
 if($i==0){
 	echo "You have no current games.";

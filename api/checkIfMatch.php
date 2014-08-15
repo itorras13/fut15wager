@@ -43,6 +43,6 @@ else {
 
 mysql_close($dbhandle);
 
-header("Location: http://localhost:8888/myprofile.html",TRUE,303);
+header("Location: /myprofile.html",TRUE,303);
 
 ?>

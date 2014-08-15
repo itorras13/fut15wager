@@ -13,7 +13,7 @@ $dbhandle = mysql_connect($hostname, $username, $password)
 $selected = mysql_select_db("fut",$dbhandle) 
   or die("Could not select examples");
 
-$result = mysql_query("SELECT system FROM users WHERE id=" .$q);
+$result = mysql_query("SELECT system,email FROM users WHERE id=" .$q);
 while ($row = mysql_fetch_array($result)) {
 	$system = $row{'system'};
 	$email = $row{'email'};
@@ -22,7 +22,7 @@ while ($row = mysql_fetch_array($result)) {
 //execute the SQL query and return records
 $result = mysql_query("SELECT dayMade,title,player1,matchID FROM matches WHERE status=0 AND player1!=" .$q. " AND system='" .$system."' ORDER BY dayMade DESC");
 //fetch tha data from the database
-if($system=='null' || $email=='null'){
+if($system=='' || $email==''){
 	echo "<span class='nOffers'>No matches will be shown until you enter your system and email in your profile.</span>";
 }
 elseif(mysql_num_rows($result) == 0) {

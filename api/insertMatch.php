@@ -37,7 +37,7 @@ if($i==1){
 elseif (mysql_num_rows($checkUserID) != 0) {
     echo "You can only have one match open at a time.";
 }
-elseif($sytem=='null' || $email=='null'){
+elseif($system=='null' || $email=='null'){
   echo "Please insert your gamertag, system, and email in your profile before doing anything else!";
 }
 else {
