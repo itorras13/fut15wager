@@ -96,7 +96,7 @@
                 var res = result.split("||");
                 if(res[0]=='none'){
                     document.getElementById('currentMatch').innerHTML = "";
-                     $("#table").append("<span class='nOffers'>You have no offers.</span>");
+                     $("#table").append("<span class='nOffers'>No one has made any offers to you.</span>");
                      if(res[1]!=null){
                         $("#table").append(res[1]);
                      }

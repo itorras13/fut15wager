@@ -36,7 +36,7 @@ if($i==0){
       }
 	}
 	if($i==0){
-    	echo json_encode(array("message1" => none, "message2"=> "No current games open."));
+    	echo json_encode(array("message1" => none, "message2"=> "No current game open."));
     } else {
     	echo json_encode(array("message1" => in, "message2"=> "/match.html?id=" .$id));
     }
